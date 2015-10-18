@@ -1,0 +1,115 @@
+/****************************************************************************************************/
+/**
+\file       pit.cxgate
+\brief      Periodic Interrupt Timer initialization and low-level functions and prototypes
+\author     Abraham Tezmol
+\version    1.0
+\date       31/10/2008
+*/
+/****************************************************************************************************/
+
+/*****************************************************************************************************
+* Include files
+*****************************************************************************************************/
+/** Own headers */
+/* Periodic Interrupt Timer routines prototypes */
+#include    "pit.h"
+
+/*****************************************************************************************************
+* Declaration of module wide TYPEs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Declaration of module wide FUNCTIONs 
+*****************************************************************************************************/	
+
+/*****************************************************************************************************
+* Definition of module wide MACROs / #DEFINE-CONSTANTs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Definition of module wide VARIABLEs 
+*****************************************************************************************************/
+
+/* vfnPIT1_Callback, function to be called upon timeout of PIT channel 1*/
+#pragma DATA_SEG SHARED_DATA
+//	#pragma align on
+	tCallbackFunction vfnPIT1_Callback;
+//	#pragma align off
+#pragma DATA_SEG DEFAULT
+
+/*****************************************************************************************************
+* Definition of module wide (CONST-) CONSTANTs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Code of module wide FUNCTIONS
+*****************************************************************************************************/
+
+#pragma CODE_SEG XGATE_CODE
+
+/****************************************************************************************************/
+/**
+* \brief    PIT Low level initialization
+* \author   Abraham Tezmol
+* \param    tCallbackFunction - Callback, function to be called upon timeout of PIT
+* \return   void
+*/
+	void vfnPIT1_Init(tCallbackFunction  Callback, UINT8 u8Core)
+	{
+	    /* Enables PIT channel 0 */
+	    PITCE_PCE1             = 1u;
+	    /* 16-bit timer 1 counts with micro time base 1 */
+	    PITMUX_PMUX1           = 1u;
+	    /* Interrupt of PIT channel 1 is enabled */
+	    PITINTE_PINTE1         = 1u;
+	    /* Clear PTI interrupt flag */
+	    PITTF_PTF1             = 1u;
+	    /* Precalculated PIT microtimer (8-bit time base divider)*/
+	    PITMTLD1               = PIT_MICROTIMER1_DIV;
+	    /* Precalculated PIT count down value */
+	    PITLD1                 = PIT_VALUE1;
+	
+	    /* Access to configuration data registers for interrupts */
+	    INT_CFADDR             = 0x70; 		/* with vectors from 0xFF70 to 0xFF7E */
+	    if (u8Core ==__XGATE_CORE) 
+	    {
+	    	INT_CFDATA4        = 0x86; 	    /* Periodic Interrupt Timer Channel 1, XGATE handled, priority 6 */ 
+	    }
+	    else
+	    {	
+	    	INT_CFDATA4        = 0x06; 		/* Periodic Interrupt Timer Channel 1, S12 Core handled, priority 6 */ 
+	    }
+	
+		/*Initialize callback function*/
+	    vfnPIT1_Callback = Callback;
+	}
+#pragma CODE_SEG DEFAULT	
+
+#pragma CODE_SEG XGATE_CODE 
+/******************************************************************************
+Function Name	:	vfnPIT_Channel1_Isr
+Parameters		:	None
+Returns			:	None
+Notes			:	Generic ISR to service PIT channel 1 irq
+******************************************************************************/
+	void interrupt vfnPIT_Channel1_Isr(void) 
+	{                                 
+		/* Clear the real time interrupt flag */
+		PITTF_PTF1 = 1u;
+		
+		/*call callback function, if initialized*/
+        if( vfnPIT1_Callback != NULL )
+        {
+      
+            #ifdef PWM_DEBUG
+              PORTA_PA5  = 1;
+            #endif          
+            vfnPIT1_Callback ( );
+	          #ifdef PWM_DEBUG
+              PORTA_PA5  = 0;
+            #endif            
+            
+        }
+	}
+#pragma CODE_SEG DEFAULT

@@ -1,0 +1,2505 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?codewarrior exportversion="2.0" ideversion="5.9.0" ?>
+
+<!DOCTYPE PROJECT [
+<!ELEMENT PROJECT (TARGETLIST, TARGETORDER, GROUPLIST, DESIGNLIST?, PLUGINDATALIST?)>
+<!ELEMENT TARGETLIST (TARGET+)>
+<!ELEMENT TARGET (NAME, SETTINGLIST, FILELIST, LINKORDER?, SEGMENTLIST?, OVERLAYGROUPLIST?, SUBTARGETLIST?, SUBPROJECTLIST?, FRAMEWORKLIST?, PACKAGEACTIONSLIST?)>
+<!ELEMENT PACKAGEACTIONSLIST (PACKAGEACTION+)>
+<!ELEMENT PACKAGEACTION (#PCDATA)>
+<!ATTLIST PACKAGEACTION PACKAGEACTIONTYPE CDATA #REQUIRED>
+<!ELEMENT NAME (#PCDATA)>
+<!ELEMENT PATH (#PCDATA)>
+<!ELEMENT FILELIST (FILE*)>
+<!ELEMENT FILE (PATHTYPE, PATHROOT?, ACCESSPATH?, PATH, PATHFORMAT, ROOTFILEREF?, FILEKIND, FILEFLAGS)>
+<!ELEMENT PATHTYPE (#PCDATA)>
+<!ELEMENT PATHROOT (#PCDATA)>
+<!ELEMENT ACCESSPATH (#PCDATA)>
+<!ELEMENT PATHFORMAT (#PCDATA)>
+<!ELEMENT ROOTFILEREF (PATHTYPE, PATHROOT?, ACCESSPATH?, PATH, PATHFORMAT)>
+<!ELEMENT FILEKIND (#PCDATA)>
+<!ELEMENT FILEFLAGS (#PCDATA)>
+<!ELEMENT FILEREF (TARGETNAME?, PATHTYPE, PATHROOT?, ACCESSPATH?, PATH, PATHFORMAT)>
+<!ELEMENT TARGETNAME (#PCDATA)>
+<!ELEMENT SETTINGLIST ((SETTING|PANELDATA)*)>
+<!ELEMENT SETTING (NAME?, (VALUE|(SETTING+)))>
+<!ELEMENT PANELDATA (NAME, VALUE)>
+<!ELEMENT VALUE (#PCDATA)>
+<!ELEMENT LINKORDER (FILEREF*)>
+<!ELEMENT SEGMENTLIST (SEGMENT+)>
+<!ELEMENT SEGMENT (NAME?, ATTRIBUTES?, FILEREF*)>
+<!ELEMENT ATTRIBUTES (#PCDATA)>
+<!ELEMENT OVERLAYGROUPLIST (OVERLAYGROUP+)>
+<!ELEMENT OVERLAYGROUP (NAME, BASEADDRESS, OVERLAY*)>
+<!ELEMENT BASEADDRESS (#PCDATA)>
+<!ELEMENT OVERLAY (NAME, FILEREF*)>
+<!ELEMENT SUBTARGETLIST (SUBTARGET+)>
+<!ELEMENT TARGETOUTPUTNAME (#PCDATA)>
+<!ELEMENT TARGETOUTPUTDISPLAYNAME (#PCDATA)>
+<!ELEMENT TARGETOUTPUTPATHFORMAT (#PCDATA)>
+<!ELEMENT TARGETOUTPUTACCESSTYPE (#PCDATA)>
+<!ELEMENT SUBTARGET (TARGETNAME, ATTRIBUTES?, TARGETOUTPUTNAME?, TARGETOUTPUTDISPLAYNAME?, TARGETOUTPUTPATHFORMAT?, TARGETOUTPUTACCESSTYPE?, FILEREF?)>
+<!ELEMENT SUBPROJECTLIST (SUBPROJECT+)>
+<!ELEMENT SUBPROJECT (FILEREF, SUBPROJECTTARGETLIST)>
+<!ELEMENT SUBPROJECTTARGETLIST (SUBPROJECTTARGET*)>
+<!ELEMENT SUBPROJECTTARGET (TARGETNAME, ATTRIBUTES?, FILEREF?)>
+<!ELEMENT FRAMEWORKLIST (FRAMEWORK+)>
+<!ELEMENT FRAMEWORK (FILEREF, VERSION?, DYNAMICLIBRARY?)>
+<!ELEMENT DYNAMICLIBRARY (#PCDATA)>
+<!ELEMENT VERSION (#PCDATA)>
+<!ELEMENT TARGETORDER (ORDEREDTARGET|ORDEREDDESIGN)*>
+<!ELEMENT ORDEREDTARGET (NAME)>
+<!ELEMENT ORDEREDDESIGN (NAME, ORDEREDTARGET+)>
+<!ELEMENT GROUPLIST (GROUP|FILEREF)*>
+<!ELEMENT GROUP (NAME, (GROUP|FILEREF)*)>
+<!ELEMENT DESIGNLIST (DESIGN+)>
+<!ELEMENT DESIGN (NAME, DESIGNDATA)>
+<!ELEMENT DESIGNDATA (#PCDATA)>
+<!ELEMENT PLUGINDATALIST (PLUGINDATA+)>
+<!ELEMENT PLUGINDATA (NAME, VALUE)>
+]>
+
+<PROJECT>
+    <TARGETLIST>
+        <TARGET>
+            <NAME>SofTec HCS12</NAME>
+            <SETTINGLIST>
+
+                <!-- Settings for "Source Trees" panel -->
+                <SETTING><NAME>UserSourceTrees</NAME><VALUE></VALUE></SETTING>
+
+                <!-- Settings for "Access Paths" panel -->
+                <SETTING><NAME>AlwaysSearchUserPaths</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>InterpretDOSAndUnixPaths</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>RequireFrameworkStyleIncludes</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>SourceRelativeIncludes</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>UserSearchPaths</NAME>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>bin</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>prm</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>cmd</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\HC12c\lib</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\HC12c\src</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\xgatec\lib</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\xgatec\src</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\xgatec\include</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_commons\omicron_cpu_commons</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_application_layer\app_mod_main</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_interrupt</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_interrupt_vector</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_mem_protection</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_pll</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_startup</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_task_scheduler</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_timer</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_watchdog</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_comm_protocol</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_config</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_encryption</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_emul_eeprom</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_interfacedata</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_mem_handler</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_s19</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_serialcomm</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_flashmemory</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_commons\omicron_datatypes_commons</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_commons</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_input_output</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_adc</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_can</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_can_comm</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_services_layer\ser_mod_xgate</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hal_layer\hal_mod_pit</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_emul_pwm</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                </SETTING>
+                <SETTING><NAME>SystemSearchPaths</NAME>
+                    <SETTING>
+                        <SETTING><NAME>SearchPath</NAME>
+                            <SETTING><NAME>Path</NAME><VALUE>lib\HC12c\include</VALUE></SETTING>
+                            <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                            <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                        </SETTING>
+                        <SETTING><NAME>Recursive</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>FrameworkPath</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>HostFlags</NAME><VALUE>All</VALUE></SETTING>
+                    </SETTING>
+                </SETTING>
+
+                <!-- Settings for "Target Settings" panel -->
+                <SETTING><NAME>Linker</NAME><VALUE>Linker for HC12</VALUE></SETTING>
+                <SETTING><NAME>PreLinker</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>PostLinker</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>Targetname</NAME><VALUE>SofTec HCS12</VALUE></SETTING>
+                <SETTING><NAME>OutputDirectory</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE>bin</VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>SaveEntriesUsingRelativePaths</NAME><VALUE>false</VALUE></SETTING>
+
+                <!-- Settings for "File Mappings" panel -->
+                <SETTING><NAME>FileMappings</NAME>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.a12</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.asm</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.axgate</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for XGATE</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_XGATE</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.bbl</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_bbl</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.c</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.c12</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cc</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cmd</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cp</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cpp</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cxgate</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for XGATE</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_XGATE</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.cxx</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.dbg</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.equ</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.h</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.hpp</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.hxx</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.inc</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.ini</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.lst</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_imp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.map</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.oil</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>OSEK Sysgen</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>true</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>true</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.pre</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.prm</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_prm</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.s</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Assembler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_asm_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.s1</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.s19</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.sgm</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Compiler for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE>mwe_cpp_HC12</VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.sx</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileType</NAME><VALUE>TEXT</VALUE></SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.txt</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.a</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.abs</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.elf</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.lib</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.o</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.obj</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE>Importer for HC12</VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.pdf</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>true</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE>.sym</VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>false</VALUE></SETTING>
+                    </SETTING>
+                    <SETTING>
+                        <SETTING><NAME>FileExtension</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Compiler</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>EditLanguage</NAME><VALUE></VALUE></SETTING>
+                        <SETTING><NAME>Precompile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>Launchable</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>ResourceFile</NAME><VALUE>false</VALUE></SETTING>
+                        <SETTING><NAME>IgnoredByMake</NAME><VALUE>true</VALUE></SETTING>
+                    </SETTING>
+                </SETTING>
+
+                <!-- Settings for "Build Extras" panel -->
+                <SETTING><NAME>CacheModDates</NAME><VALUE>true</VALUE></SETTING>
+                <SETTING><NAME>DumpBrowserInfo</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>CacheSubprojects</NAME><VALUE>true</VALUE></SETTING>
+                <SETTING><NAME>UseThirdPartyDebugger</NAME><VALUE>true</VALUE></SETTING>
+                <SETTING><NAME>BrowserGenerator</NAME><VALUE>1</VALUE></SETTING>
+                <SETTING><NAME>DebuggerAppPath</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE>prog\hiwave.exe</VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>CodeWarrior</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>DebuggerCmdLineArgs</NAME><VALUE>%targetFilePath -Prod=%projectFileDir\SofTec_HCS12.ini -instance=softec</VALUE></SETTING>
+                <SETTING><NAME>DebuggerWorkingDir</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>CodeCompletionPrefixFileName</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>CodeCompletionMacroFileName</NAME><VALUE></VALUE></SETTING>
+
+                <!-- Settings for "Custom Keywords" panel -->
+                <SETTING><NAME>CustomColor1</NAME>
+                    <SETTING><NAME>Red</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>Green</NAME><VALUE>32767</VALUE></SETTING>
+                    <SETTING><NAME>Blue</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>CustomColor2</NAME>
+                    <SETTING><NAME>Red</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>Green</NAME><VALUE>32767</VALUE></SETTING>
+                    <SETTING><NAME>Blue</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>CustomColor3</NAME>
+                    <SETTING><NAME>Red</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>Green</NAME><VALUE>32767</VALUE></SETTING>
+                    <SETTING><NAME>Blue</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>CustomColor4</NAME>
+                    <SETTING><NAME>Red</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>Green</NAME><VALUE>32767</VALUE></SETTING>
+                    <SETTING><NAME>Blue</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+                <PANELDATA><NAME>PEOptions</NAME><VALUE>
+                    0100
+                </VALUE></PANELDATA>
+
+                <!-- Settings for "Panel for Assembler for HC12" panel -->
+                <SETTING><NAME>Panel for Assembler for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE> -CpuHCS12XE -D__RUN_XGATE_OUT_OF_FLASH -Mb </VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Burner for HC12" panel -->
+                <SETTING><NAME>Panel for Burner for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE>BurnerBytesPerLine=32,BurnerSRecordType=0,BurnerUndefByte=255,BurnerSwapByte=0,BurnerOrigin=0,BurnerDestination=0,BurnerLength=65536,BurnerFormat=0,BurnerDataBus=0,BurnerABS_FILE="E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\bin\Omicron_ASW.abs",BurnerOutputType=4,BurnerDataBits=1,BurnerParity=0,BurnerByteCommands=0,BurnerBaudRate=9600,BurnerOutputFile=%ABS_FILE%.s19,BurnerHeaderFile=,BurnerInputFile=%ABS_FILE%</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Compiler for HC12" panel -->
+                <SETTING><NAME>Panel for Compiler for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-CPUHCS12XE -D__RUN_XGATE_OUT_OF_FLASH -D__FAR_DATA -Mb</VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Importer for HC12" panel -->
+                <SETTING><NAME>Panel for Importer for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Libmaker for HC12" panel -->
+                <SETTING><NAME>Panel for Libmaker for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.lib</VALUE></SETTING>
+                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Linker for HC12" panel -->
+                <SETTING><NAME>Panel for Linker for HC12</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-B -M -WOutFileOn</VALUE></SETTING>
+                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\prm\Omicron_ASW_S12XE.prm</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>Omicron_ASW.abs</VALUE></SETTING>
+                    <SETTING><NAME>UseTemplate</NAME><VALUE>2</VALUE></SETTING>
+                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>mc9s12xep100.prm</VALUE></SETTING>
+                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Assembler for XGATE" panel -->
+                <SETTING><NAME>Panel for Assembler for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-D_STACK_START=0x8100 -D__RUN_XGATE_OUT_OF_FLASH</VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Burner for XGATE" panel -->
+                <SETTING><NAME>Panel for Burner for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>BurnerDialogdata</NAME><VALUE></VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Compiler for XGATE" panel -->
+                <SETTING><NAME>Panel for Compiler for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE>-Cc -CsIni0 -Cstv=0x8100 -D__RUN_XGATE_OUT_OF_FLASH -F2 -OnCstVar -OnPMNC</VALUE></SETTING>
+                    <SETTING><NAME>UseDecoder</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Importer for XGATE" panel -->
+                <SETTING><NAME>Panel for Importer for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Libmaker for XGATE" panel -->
+                <SETTING><NAME>Panel for Libmaker for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.lib</VALUE></SETTING>
+                    <SETTING><NAME>LibGenObjFile</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "Panel for Linker for XGATE" panel -->
+                <SETTING><NAME>Panel for Linker for XGATE</NAME>
+                    <SETTING><NAME>Options</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>LinkParameterFilename</NAME><VALUE>out.prm</VALUE></SETTING>
+                    <SETTING><NAME>EchoCommandLine</NAME><VALUE>0</VALUE></SETTING>
+                    <SETTING><NAME>OutputFilename</NAME><VALUE>out.abs</VALUE></SETTING>
+                    <SETTING><NAME>UseTemplate</NAME><VALUE>2</VALUE></SETTING>
+                    <SETTING><NAME>PrmTemplateName</NAME><VALUE>default.prm</VALUE></SETTING>
+                    <SETTING><NAME>RunPreprocessor</NAME><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "OSEK Sysgen Panel" panel -->
+                <SETTING><NAME>OSEKCompilerPref_PropertyFileName</NAME><VALUE>{Project}gen\osprop.h</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_IncludeFileName</NAME><VALUE>{Project}gen\cfg.h</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_SourceFileName</NAME><VALUE>{Project}gen\cfg.c</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_StkLabelFileName</NAME><VALUE>{Project}gen\stklabel.s</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_ORTIFileName</NAME><VALUE>{TargetFile}.ort</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_SysGenFileName</NAME><VALUE>{Compiler}osek\shared\bin\sysgen.exe</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_OptionFileName</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_UserTypesFileName</NAME><VALUE>{Project}Sources\usertypes.h</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_PrefixFilePathName</NAME><VALUE>{Project}gen</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_IncludePaths</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_DisabledMsgs</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_OptionLine</NAME><VALUE> -p "{Project}gen\osprop.h" -h "{Project}gen\cfg.h" -c "{Project}gen\cfg.c" -s "{Project}gen\stklabel.s" -o "{TargetFile}.ort" -O "2.1"</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_OrtiVersion</NAME><VALUE>2.1</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_SuppressWarning</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_AbsolutePathes</NAME><VALUE>false</VALUE></SETTING>
+                <SETTING><NAME>OSEKCompilerPref_GenerateSingleBackslash</NAME><VALUE>false</VALUE></SETTING>
+
+                <!-- Settings for "BatchRunner Panel" panel -->
+                <SETTING><NAME>MWBatchRunnerPostLinker_BatchPath</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>MWBatchRunnerPostLinker_SendParam</NAME><VALUE>false</VALUE></SETTING>
+
+                <!-- Settings for "BatchRunner PreLinker Panel" panel -->
+                <SETTING><NAME>MWBatchRunnerPreLinker_BatchPath</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Windows</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Absolute</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "PCLint Options" panel -->
+                <SETTING><NAME>useMeyers</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useSaks</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useMisra</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useATL</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useSTL</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useOIL</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useWIN16</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useWIN32</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useWINNT</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useMFC</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>useCORBA</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>wLevel</NAME><VALUE>3</VALUE></SETTING>
+                <SETTING><NAME>wlibLevel</NAME><VALUE>3</VALUE></SETTING>
+                <SETTING><NAME>addOptions</NAME><VALUE></VALUE></SETTING>
+
+                <!-- Settings for "PCLint Main Settings" panel -->
+                <SETTING><NAME>exePath</NAME><VALUE>{Compiler}Lint\Lint-nt.exe</VALUE></SETTING>
+                <SETTING><NAME>configPath</NAME><VALUE>{Compiler}Lint\lnt\CodeWarrior</VALUE></SETTING>
+                <SETTING><NAME>showCmdLine</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>cofile</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>showDefCoFiles</NAME><VALUE>0</VALUE></SETTING>
+                <SETTING><NAME>prefixFile</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>noLink</NAME><VALUE>1</VALUE></SETTING>
+
+                <!-- Settings for "x86 Exceptions Panel" panel -->
+                <SETTING><NAME>MWDebugger_X86_Exceptions</NAME>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                    <SETTING><VALUE>0</VALUE></SETTING>
+                </SETTING>
+
+                <!-- Settings for "External Build Panel" panel -->
+                <SETTING><NAME>MWExternalBuild_buildCommand</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>MWExternalBuild_executableFile</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>MWExternalBuild_symbolicsFile</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>MWExternalBuild_buildDirectory</NAME>
+                    <SETTING><NAME>Path</NAME><VALUE></VALUE></SETTING>
+                    <SETTING><NAME>PathFormat</NAME><VALUE>Generic</VALUE></SETTING>
+                    <SETTING><NAME>PathRoot</NAME><VALUE>Project</VALUE></SETTING>
+                </SETTING>
+                <SETTING><NAME>MWExternalBuild_targetOS</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>MWExternalBuild_targetCPU</NAME><VALUE></VALUE></SETTING>
+                <SETTING><NAME>MWExternalBuild_targetName</NAME><VALUE></VALUE></SETTING>
+            </SETTINGLIST>
+            <FILELIST>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW_S12XE.prm</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>burner.bbl</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>app_mod_main.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>app_mod_main.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_interrupt.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_interrupt.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_vectors.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_vectors.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_pll.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_pll.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_startup.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_startup.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_tasks.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_scheduler.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_scheduler.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_watchdog.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_watchdog.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_configuration.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_eeprom.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_eeprom.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_interfacedata.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_interfacedata.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_memhandler.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_memhandler.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash_registers.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>s12_datapage.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Start12.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>typedefs.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW.map</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12.ini</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppon.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Postload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Preload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Reset.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Startup.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppoff.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_io.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_io.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mc9s12xep100.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mc9s12xep100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_adc.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_adc.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_configuration.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ansi_xg.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ansixb.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Unknown</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_vectors.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_vectors.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_sci.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_sci.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan_id_config.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_mod_can_comm.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS></FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_mod_can_comm.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+                <FILE>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                    <FILEKIND>Text</FILEKIND>
+                    <FILEFLAGS>Debug</FILEFLAGS>
+                </FILE>
+            </FILELIST>
+            <LINKORDER>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>typedefs.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Start12.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>s12_datapage.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW_S12XE.prm</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>burner.bbl</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>app_mod_main.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>app_mod_main.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_interrupt.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_interrupt.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_vectors.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_vectors.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_tasks.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_scheduler.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_scheduler.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_pll.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_pll.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_configuration.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_eeprom.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_eeprom.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_memhandler.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_memhandler.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash_registers.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_watchdog.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_watchdog.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_interfacedata.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_interfacedata.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_startup.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_startup.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_flash.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW.map</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12.ini</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppon.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Postload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Preload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Reset.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Startup.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppoff.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_io.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_io.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mc9s12xep100.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>mc9s12xep100.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_adc.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_adc.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_configuration.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ansi_xg.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ansixb.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_vectors.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_emul_pwm.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_vectors.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_pit.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_sci.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_sci.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan_id_config.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hal_mscan.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_mod_can_comm.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>hil_mod_can_comm.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ser_xgate_config.cxgate</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </LINKORDER>
+        </TARGET>
+    </TARGETLIST>
+
+    <TARGETORDER>
+        <ORDEREDTARGET><NAME>SofTec HCS12</NAME></ORDEREDTARGET>
+    </TARGETORDER>
+
+    <GROUPLIST>
+        <GROUP><NAME>Software Layers</NAME>
+            <GROUP><NAME>Application</NAME>
+                <GROUP><NAME>Main Application</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>app_mod_main.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>app_mod_main.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+            </GROUP>
+            <GROUP><NAME>Services</NAME>
+                <GROUP><NAME>Interrupts</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_interrupt.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_interrupt.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Interrupt Vectors</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_vectors.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_vectors.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Memory Protection</NAME>
+                </GROUP>
+                <GROUP><NAME>Pll</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_pll.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_pll.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Startup</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_startup.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_startup.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Task Scheduler</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_tasks.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_scheduler.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_scheduler.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Timer</NAME>
+                </GROUP>
+                <GROUP><NAME>Watchdog</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_watchdog.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_watchdog.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>XGATE</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_xgate_config.cxgate</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_xgate_vectors.cxgate</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_xgate_config.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_xgate_config.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>ser_xgate_vectors.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+            </GROUP>
+            <GROUP><NAME>Hardware Independent</NAME>
+                <GROUP><NAME>Comm Protocol</NAME>
+                </GROUP>
+                <GROUP><NAME>CAN Comm</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_mod_can_comm.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_mod_can_comm.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Configuration</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_configuration.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_configuration.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Encryption</NAME>
+                </GROUP>
+                <GROUP><NAME>Emul_EEPROM</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_emul_eeprom.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_emul_eeprom.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Emul PWM</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_emul_pwm.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_emul_pwm.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_emul_pwm.cxgate</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Interface</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_interfacedata.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_interfacedata.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Memory Handler</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_memhandler.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hil_memhandler.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>S19 support</NAME>
+                </GROUP>
+            </GROUP>
+            <GROUP><NAME>Hardware Abstraction</NAME>
+                <GROUP><NAME>Serial Comm Interface</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_sci.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_sci.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Periodic Interrupt Timer</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_pit.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_pit.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_pit.cxgate</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Input Output</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_io.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_io.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Flash Memory</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_flash_registers.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_flash.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_flash.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>Analog to Digital Conversion</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_adc.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_adc.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+                <GROUP><NAME>MSCAN</NAME>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_mscan_id_config.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_mscan.c</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_mscan.h</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                    <FILEREF>
+                        <TARGETNAME>SofTec HCS12</TARGETNAME>
+                        <PATHTYPE>Name</PATHTYPE>
+                        <PATH>hal_mscan.cxgate</PATH>
+                        <PATHFORMAT>Windows</PATHFORMAT>
+                    </FILEREF>
+                </GROUP>
+            </GROUP>
+        </GROUP>
+        <GROUP><NAME>Software Commons</NAME>
+            <GROUP><NAME>CPU Commons</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>s12_datapage.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Start12.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Datatypes Commons</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>typedefs.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>GPIO</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.h</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>GPIO.c</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+        </GROUP>
+        <GROUP><NAME>Project Settings</NAME>
+            <GROUP><NAME>Linker Files</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW_S12XE.prm</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>burner.bbl</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Linker Map</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>Omicron_ASW.map</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Debugger Project File</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12.ini</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+            <GROUP><NAME>Debugger Cmd Files</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppon.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Postload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Preload.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Reset.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Startup.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>SofTec_HCS12_Vppoff.cmd</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+        </GROUP>
+        <GROUP><NAME>Libraries</NAME>
+            <FILEREF>
+                <TARGETNAME>SofTec HCS12</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>ansixb.lib</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>SofTec HCS12</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>mc9s12xep100.h</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <FILEREF>
+                <TARGETNAME>SofTec HCS12</TARGETNAME>
+                <PATHTYPE>Name</PATHTYPE>
+                <PATH>mc9s12xep100.c</PATH>
+                <PATHFORMAT>Windows</PATHFORMAT>
+            </FILEREF>
+            <GROUP><NAME>XGATE</NAME>
+                <FILEREF>
+                    <TARGETNAME>SofTec HCS12</TARGETNAME>
+                    <PATHTYPE>Name</PATHTYPE>
+                    <PATH>ansi_xg.lib</PATH>
+                    <PATHFORMAT>Windows</PATHFORMAT>
+                </FILEREF>
+            </GROUP>
+        </GROUP>
+    </GROUPLIST>
+
+    <PLUGINDATALIST>
+        <PLUGINDATA>
+            <NAME>HC12 Wizard Configuration</NAME>
+            <VALUE>
+                3C3F786D6C2076657273696F6E3D22312E30223F3E0A3C57697A617264436F6E
+                66696775726174696F6E2076657273696F6E3D22312E33223E0A20203C53656C
+                656374656457697A617264456C656D656E74206E616D653D2250524D5F416461
+                70746174696F6E7322207465726D3D2250524D5F41646170746174696F6E7322
+                2069643D2249445F50524D5F41444150544154494F4E5322206964726566733D
+                2249445F50524D5F41444150544154494F4E53222068696464656E3D22596573
+                222F3E0A20203C53656C656374656457697A617264456C656D656E74206E616D
+                653D225374616E6461726422207465726D3D225374616E64617264222069643D
+                2249445F5354414E4441524422206964726566733D2249445F5354414E444152
+                44222068696464656E3D22596573222F3E0A20203C53656C656374656457697A
+                617264456C656D656E74206E616D653D22507263457870496E7374616C6C6174
+                696F6E22207465726D3D22507263457870496E7374616C6C6174696F6E436865
+                636B222069643D2249445F494E53545F5052435F45585022206964726566733D
+                2249445F494E53545F5052435F455850222068696464656E3D22596573222F3E
+                0A20203C53656C656374656457697A617264456C656D656E74206E616D653D22
+                50434C696E74496E7374616C6C6174696F6E22207465726D3D2250434C696E74
+                496E7374616C6C6174696F6E436865636B222069643D2249445F494E53545F50
+                435F4C494E5422206964726566733D2249445F494E53545F50435F4C494E5422
+                2068696464656E3D22596573222F3E0A20203C53656C656374656457697A6172
+                64456C656D656E74206E616D653D224368697022207465726D3D224D43395331
+                32584550313030222069643D2249445F434849505F5845503130302220696472
+                6566733D2249445F434849505F4C4953542049445F434849505F46414D494C59
+                5F6863733132782049445F434849505F6863733132785F53554246414D494C59
+                5F58452049445F434849505F584550313030222F3E0A20203C53656C65637465
+                6457697A617264456C656D656E74206E616D653D224C616E6775616765222074
+                65726D3D2243222069643D2249445F4C414E475F4322206964726566733D2249
+                445F4C414E475F4C4953542049445F4C414E475F43222F3E0A20203C53656C65
+                6374656457697A617264456C656D656E74206E616D653D225072634578702220
+                7465726D3D224E6F6E65222069643D2249445F5052435F4558505F4E4F222069
+                64726566733D2249445F5052435F4558502049445F5052435F4558505F4E4F22
+                2F3E0A20203C53656C656374656457697A617264456C656D656E74206E616D65
+                3D2250434C696E7422207465726D3D224E6F222069643D2249445F50435F4C49
+                4E545F4E4F22206964726566733D2249445F50435F4C494E542049445F50435F
+                4C494E545F4E4F222F3E0A20203C53656C656374656457697A617264456C656D
+                656E74206E616D653D2258474154455F7965735F6E6F22207465726D3D225369
+                6E676C6520436F7265202848435331325829222069643D2249445F5847415445
+                5F4E4F22206964726566733D2249445F58474154452049445F58474154455F4E
+                4F222F3E0A20203C53656C656374656457697A617264456C656D656E74206E61
+                6D653D2253746172747570436F646522207465726D3D22414E53492073746172
+                74757020636F6465222069643D2249445F535441525455505F434F44455F414E
+                534922206964726566733D2249445F535441525455505F434F44452049445F53
+                5441525455505F434F44455F414E5349222F3E0A20203C53656C656374656457
+                697A617264456C656D656E74206E616D653D224D656D6F72794D6F64656C2220
+                7465726D3D224920646F6E2774206B6E6F77222069643D2249445F4D454D5F4D
+                4F445F4F50545F4E4F545F46495422206964726566733D2249445F4D454D5F4D
+                4F445F4F50545F524144494F4C4953542049445F4D454D5F4D4F445F4F50545F
+                4E4F545F464954222F3E0A20203C53656C656374656457697A617264456C656D
+                656E74206E616D653D224D656D6F72794D617070696E6722207465726D3D2246
+                4C415348222069643D2249445F4D454D5F4D4F445F4F50545F4D415050494E47
+                5F464C41534822206964726566733D2249445F4D454D5F4D4F445F4F50545F4D
+                415050494E472049445F4D454D5F4D4F445F4F50545F4D415050494E475F464C
+                415348222F3E0A20203C53656C656374656457697A617264456C656D656E7420
+                6E616D653D224D656D6F72794D6F64656C22207465726D3D2259657322206964
+                3D2249445F4D454D5F4D4F445F4F50545F414C4C4E4F4E434F4E53545F494E5F
+                4E4F4E504147454452414D5F59455322206964726566733D2249445F4D454D5F
+                4D4F445F4F50545F424F54485F464F525F434F44455F4E5F434F4E5354204944
+                5F4D454D5F4D4F445F4F50545F414C4C4E4F4E434F4E53545F494E5F4E4F4E50
+                4147454452414D5F594553222F3E0A20203C53656C656374656457697A617264
+                456C656D656E74206E616D653D224D656D6F72794D6F64656C22207465726D3D
+                22436F6465222069643D2249445F4D454D5F4D4F445F4F50545F4D454D4F5259
+                5F42414E4B45525F434F444522206964726566733D2249445F4D454D5F4D4F44
+                5F4F50545F4D454D4F52595F42414E4B45525F434F4445222F3E0A20203C5365
+                6C656374656457697A617264456C656D656E74206E616D653D224D656D4D6F64
+                656C22207465726D3D2242616E6B6564222069643D2249445F4D454D5F4D444C
+                5F4222206964726566733D2249445F4D454D5F4D444C2049445F4D454D5F4D44
+                4C5F42222F3E0A20203C53656C656374656457697A617264456C656D656E7420
+                6E616D653D22484331325F464C506F696E7422207465726D3D224E6F6E652220
+                69643D2249445F484331325F464C5F504F494E545F4E4F4E4522206964726566
+                733D2249445F484331325F464C5F504F494E542049445F484331325F464C5F50
+                4F494E545F4E4F4E45222F3E0A20203C53656C656374656457697A617264456C
+                656D656E74206E616D653D2254617267657422207465726D3D22536F66546563
+                204843533132222069643D2249445F434F4E4E5F53545F484353313258452220
+                6964726566733D2249445F434F4E4E454354494F4E5F4C4953542049445F434F
+                4E4E5F53545F48435331325845222F3E0A3C2F57697A617264436F6E66696775
+                726174696F6E3E0A
+            </VALUE></PLUGINDATA>
+    </PLUGINDATALIST>
+</PROJECT>

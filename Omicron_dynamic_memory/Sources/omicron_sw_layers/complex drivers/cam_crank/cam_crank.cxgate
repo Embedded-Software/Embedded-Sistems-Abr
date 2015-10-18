@@ -1,0 +1,252 @@
+/****************************************************************************************************/
+/**
+\file       cam_crank.cxgate
+\brief      CAM CRANK signal generation functions for the XGATE
+\author     Abraham Tezmol
+\version    1.0
+\date       24/11/2011
+*/
+/****************************************************************************************************/
+
+/*****************************************************************************************************
+* Include files
+*****************************************************************************************************/
+#include    "cam_crank.h"
+
+/*****************************************************************************************************
+* Declaration of module wide TYPEs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Declaration of module wide FUNCTIONs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Definition of module wide MACROs / #DEFINE-CONSTANTs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Definition of module wide VARIABLEs 
+*****************************************************************************************************/
+
+/******************************************************************************
+Crank Configuration
+Array u8CrankConfig defines the profile for Crnakshaft signal
+
+*****************************************************************************************************/
+
+#pragma DATA_SEG SHARED_DATA
+UINT8 u8CrankConfig[]=
+{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0};                           
+#pragma DATA_SEG DEFAULT
+
+/******************************************************************************
+Cam Configuration
+Array u8CamConfig defines the profile for Camshaft signal
+
+******************************************************************************/
+
+#pragma DATA_SEG SHARED_DATA 
+UINT8 u8CamConfig[]=
+{1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,0,0,0,0,0,0,
+ 0,0,0,0,0,0,0,0,0,0,
+ 0,0,0,0,0,0,0,0,0,1,
+ 1,1,1,1,0,0,0,0,0,0,
+ 0,0,0,0,0,0,0,0,0,0,
+ 0,0,0,0,0,0,0,0,0,1,
+ 1,1,1,0,0,0,0,0,1,1,
+ 1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,1,1,1,1,1,1,
+ 1,1,1,1,0,0,0,0,0,0};                           
+#pragma DATA_SEG DEFAULT
+
+/******************************************************************************
+PWM initialisation
+Array cam_crank_channels consists of record of structure type tCamCrankChDescr
+For each required PWM channel, identify the relevant port address and pin,
+the PWM period and duty cycle, and the starting position
+
+******************************************************************************/
+
+#pragma DATA_SEG SHARED_DATA 
+
+tCamCrankChDescr cam_crank_channels []=
+{/*          *u8Port            *u8ConfigProfile      u16PITCounter u8SignalType  u8ArrayIndex  u8BitMask   u8DirConfig     u8Directionu    8ProfileSize */
+/* 1 */    { (UINT8 *)(&PORTA), &(u8CrankConfig[0]),  0u,           CRANK_SIGNAL, 0u,           0x01,       BIDIRECTIONAL,  FORWARD,        sizeof(u8CrankConfig)/sizeof(UINT8) },
+/* 2 */    { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   0u,           0x02,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },  
+/* 3 */    { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   15u,          0x04,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },
+/* 4 */    { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   0u,           0x08,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },
+/* 5 */    { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   15u,          0x10,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   }
+};
+
+#pragma DATA_SEG DEFAULT
+
+#pragma DATA_SEG SHARED_DATA
+UINT16 u16RPMValue = 10u;
+#pragma DATA_SEG DEFAULT
+
+#pragma DATA_SEG SHARED_DATA
+UINT8 u8NumberOfTeeth = 60;
+#pragma DATA_SEG DEFAULT
+
+#pragma DATA_SEG SHARED_DATA
+UINT16 u16PITTimeOut = 100;  /* PIT time-out for Crank signal */
+#pragma DATA_SEG DEFAULT
+
+/******************************************************************************
+Variables for control data
+******************************************************************************/
+
+#pragma DATA_SEG XGATE_DATA
+tCamCrankControl CAM_CRANK_Control= 
+{ sizeof(cam_crank_channels)/sizeof(tCamCrankChDescr), cam_crank_channels};
+#pragma DATA_SEG DEFAULT
+
+#pragma DATA_SEG XGATE_DATA
+tCamCrankChDescr* ptCamCrankChDescr_ptr;                            
+#pragma DATA_SEG DEFAULT
+
+/*****************************************************************************************************
+* Definition of module wide (CONST-) CONSTANTs 
+*****************************************************************************************************/
+
+/*****************************************************************************************************
+* Code of module wide FUNCTIONS
+*****************************************************************************************************/
+
+ 
+/******************************************************************************
+Function Name   : vfnCamCrank_Callback
+Parameters      : None
+Returns         : None
+Notes     		: Cam Crank algorithm implementation. Callback function to be called 
+          		  by appropriate ISR
+******************************************************************************/
+#pragma CODE_SEG XGATE_CODE
+  void vfnCamCrank_Callback(void) 
+  {                                 
+    	UINT16 u16Delay;
+    	UINT8  u8Channel;
+    	
+      while (!_ssem(CAM_CRANK_SEMAPHORE)) { }
+
+      if (u16PITTimeOut != 0xFFFF)
+      {
+        	for( u8Channel = 0; u8Channel <= ( CAM_CRANK_Control.u8ConfigSize - 1 ); u8Channel++ )
+        	{
+            	/* Load new PWM configuration */
+          		ptCamCrankChDescr_ptr = &cam_crank_channels[ u8Channel ];
+
+            	u16Delay = 0;
+
+              /* Identify signal type settings */
+              if( ptCamCrankChDescr_ptr->u8SignalType == CRANK_SIGNAL )
+              {/* CRANK_SIGNAL Settings */
+                  if( ptCamCrankChDescr_ptr->u8DirConfig == BIDIRECTIONAL )
+                  {/* BIDIRECTIONAL Configuration */
+                	    if( ptCamCrankChDescr_ptr->u8Direction == REVERSE )
+                	    {/* REVERSE delay */
+                  	      u16Delay = REVERSE_DELAY_IN_PIT_COUNTS; 
+                	    }
+                	    else
+                	    {/* FORWARD delay */
+                  	      u16Delay = FORWARD_DELAY_IN_PIT_COUNTS;      	      
+                	    }
+                  }
+                  else
+                  {/* UNIDIRECTIONAL Configuration */
+                      u16Delay = ( u16PITTimeOut >> 1 );  /* For a Duty Cyle of 50% */            
+                  }	
+                  /* Set value from Configuration Table */
+                  if( ptCamCrankChDescr_ptr->u16PITCounter == 0u )
+                  {
+                      if( ptCamCrankChDescr_ptr->u8ConfigProfile[ptCamCrankChDescr_ptr->u8ArrayIndex] == 1 )
+                      {
+                          *(ptCamCrankChDescr_ptr->u8Port) &= ~ptCamCrankChDescr_ptr->u8BitMask; /* Set 0 */
+                      }
+                      else
+                      {	      
+                          *(ptCamCrankChDescr_ptr->u8Port) |= ptCamCrankChDescr_ptr->u8BitMask; /* Set 1 */
+                      }
+                      
+                  }
+                  if( ptCamCrankChDescr_ptr->u16PITCounter >= u16Delay )
+                  {
+                      *(ptCamCrankChDescr_ptr->u8Port) |= ptCamCrankChDescr_ptr->u8BitMask; /* Set 1 */
+                  }
+              }
+              else
+              { /* CAM_SIGNAL Settings */
+                  if( ptCamCrankChDescr_ptr->u16PITCounter == 0u)
+                  {
+                      if( ptCamCrankChDescr_ptr->u8ConfigProfile[ptCamCrankChDescr_ptr->u8ArrayIndex] == 0 )
+                      {
+                          *(ptCamCrankChDescr_ptr->u8Port) &= ~ptCamCrankChDescr_ptr->u8BitMask; /* Set 0 */
+                      }
+                      else
+                      {	      
+                          *(ptCamCrankChDescr_ptr->u8Port) |= ptCamCrankChDescr_ptr->u8BitMask; /* Set 1 */
+                      }
+                  }
+              }
+              
+              /* Increase counter which represents position within period for each channel */
+              ptCamCrankChDescr_ptr->u16PITCounter++; 
+          		
+          		/* Check if time-out for an PIT event has been reached */
+          		if( ptCamCrankChDescr_ptr->u16PITCounter < u16PITTimeOut )
+          		{;}
+          		else
+          		{                                          
+                  if( ( cam_crank_channels[0].u8Direction == NONE ) || ( cam_crank_channels[0].u8Direction == FORWARD ))
+                  {
+                      ptCamCrankChDescr_ptr->u8ArrayIndex++;
+                      if( ptCamCrankChDescr_ptr->u8ArrayIndex < ptCamCrankChDescr_ptr->u8ProfileSize ){;}
+                      else
+                      { 
+                         ptCamCrankChDescr_ptr->u8ArrayIndex = 0u; 
+                      }               
+                  }
+                  else 
+                  { 
+                      if( ptCamCrankChDescr_ptr->u8ArrayIndex > 0 )
+                      { 
+                         ptCamCrankChDescr_ptr->u8ArrayIndex--; 
+                      }
+                      else
+                      {
+                          ptCamCrankChDescr_ptr->u8ArrayIndex = ( ptCamCrankChDescr_ptr->u8ProfileSize - 1);
+                      }              
+                  }
+          	    	ptCamCrankChDescr_ptr->u16PITCounter = 0u;
+              }
+        	
+        	}  	    	  	   		
+     }
+     /* Release the hardware semaphore */   
+     _csem(CAM_CRANK_SEMAPHORE);
+    	    	    	    	
+  }
+#pragma CODE_SEG DEFAULT
+
+/******************************************************************************
+Function Name : vfnCamCrank_Init_XGATE
+Parameters    : None
+Returns     : None
+Notes     : Cam Crank implementation. Initialization of Callback function 
+          to be called by appropriate ISR
+******************************************************************************/
+#pragma CODE_SEG XGATE_CODE
+  void interrupt vfnCamCrank_Init_XGATE_Isr(void) 
+  {                                 
+    /* Periodic Interrupt Timer Low Level Initialization */
+      vfnPIT1_Init(&vfnCamCrank_Callback, __XGATE_CORE);
+    /* Clear Software Interrupt request flag */
+      XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
+  }
+#pragma CODE_SEG DEFAULT
+

@@ -1,0 +1,37 @@
+[Open Files]
+Active File Display Mode=3
+Active File Index=3
+Open File Line0=1639
+Open File Line1=1500
+Open File Line2=1303
+Open File Line3=1820
+Open File Pos0=3485
+Open File Pos1=0
+Open File Pos2=0
+Open File Pos3=2154
+Open File Window Pos0=0,1,-1,-1,-4,-30,44,58,812,532
+Open File Window Pos1=0,1,-1,-1,-4,-30,22,29,678,503
+Open File Window Pos2=0,1,-1,-1,-4,-30,44,58,700,532
+Open File Window Pos3=2,3,-1,-1,-4,-30,66,87,722,561
+Open File0=E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\omicron_sw_layers\omicron_application_layer\app_mod_main\app_mod_main.c
+Open File1=E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_emul_pwm\hil_emul_pwm.c
+Open File2=E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_emul_pwm\hil_emul_pwm.h
+Open File3=E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\omicron_sw_layers\omicron_hil_layer\hil_mod_emul_pwm\hil_emul_pwm.cxgate
+Open File4=
+Remember Files=1
+
+[Project Information]
+Project Start=D9070B0000001D0014002C00220000006A
+Working Time=318890
+
+[Folders]
+Output=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\=1
+Linker=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_services_layer - ser_mod_xgate=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_application_layer - app_mod_main=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_hal_layer=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_hil_layer=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_hil_layer - hil_mod_emul_pwm=1
+E:\Proyectos\Omicron\Omicron ASW\Omicron_ASW\Sources\ - omicron_sw_layers - omicron_services_layer=1
