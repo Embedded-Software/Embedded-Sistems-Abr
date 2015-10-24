@@ -81,12 +81,12 @@ void vfnCommProtocol_Init(void)
     vfnSCI_Init(SERIAL_COMM_CHANNEL);
     
 	/* Configure port baud rate */
-    vfnSCI_Configure(SERIAL_COMM_CHANNEL,COMM_BAUDRATE);  
+  /* vfnSCI_Configure(SERIAL_COMM_CHANNEL,COMM_BAUDRATE);  */
     
-    /* Enable Transmitter and Receiver of selected channel */
-    vfnSCI_ON(SERIAL_COMM_CHANNEL);
+  /* Enable Transmitter and Receiver of selected channel */
+  /* vfnSCI_ON(SERIAL_COMM_CHANNEL);*/
     
-    pu8SCI0_Read_Transmit_Data_ptr = pu8SCI0_TxData;
+  /* pu8SCI0_Read_Transmit_Data_ptr = pu8SCI0_TxData; */
 
     vfnCOM_Init();
 }
@@ -559,6 +559,16 @@ void vfnCOM_Analyse(void)
 }
 
 
+/*
+void fncRespuesta_ExternalTask(enum tSCI_Channel u8SCIPort)
+{    
+    unsigned char u8ByteReceived;
+    
+    u8ByteReceived = u8SCI_ReadRx(u8SCIPort);
+    vfnSCI_WriteBufferTx(u8SCIPort, &u8ByteReceived,1);
+    vfnSCI_ClearRx(u8SCIPort);
+}
 
+*/
 
     

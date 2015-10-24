@@ -91,5 +91,7 @@ void vfnCheckCommands(void);
 void vfnCOM_SendRPM(void);
 void vfnCOM_RxByte(void);
 void vfnCOM_TxByte(void);
+/* void fncRespuesta_ExternalTask(enum tSCI_Channel u8SCIPort); */
+
 
 #endif /* __COMMUNICATION_PROTOCOL_H */

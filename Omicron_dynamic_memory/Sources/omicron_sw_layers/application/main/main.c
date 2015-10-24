@@ -14,10 +14,13 @@
 
 /** Main application common definitions */
 #include    "main.h"
+#include    "GPIO.h"
+
 
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs 
 *****************************************************************************************************/
+
 
 /****************************************************************************************************
 * Declaration of module wide FUNCTIONs 
@@ -45,6 +48,9 @@ void vfnBackgroundSubsystemTasks(void);
 
 void main(void) 
 {       
+    int i=0;
+    int j=0;    
+
     /* Disable interrupts */
     INTERRUPT_DISABLE(); 
     /* XGATE initialization */
@@ -59,23 +65,29 @@ void main(void)
     /* Microcontroller Input/Output pins initialization */
     vfnInputs_Outputs_Init();
     /* Initialize Serial Communications */
-    vfnCommProtocol_Init();
+    /* vfnCommProtocol_Init(); */
     /* Initialize Task Scheduler */ 
     vfnScheduler_Init();
     /* Start execution of task scheduler */
     vfnScheduler_Start();
     /* Arm COP watchdog */
-    vfnCOPWatchdog_Init();
+    /* vfnCOPWatchdog_Init();*/
     /* Once all initializations are complete, enable interrupts */
     INTERRUPT_ENABLE();     
     /* Initialize CAM/Crank emulation */
-    vfnCamCrank_Init();
+    /* vfnCamCrank_Init();*/
     /* Start CAM/Crank emulation */
-    vfnCamCrank_Start();
+    /* vfnCamCrank_Start();*/
+
+    vfnSCI_Init(&SCI_config[0]);
+    vfnSCI_WriteBufferTx(SCI_CH0, cadena, 44);
+    
+    
     
     /*-- Loop through all the periodic tasks from Task Scheduler --*/
     for(;;)
-    {
+    {        
+        
         /* Perform all scheduled tasks */
         vfnTask_Scheduler();
         /* Perform all background susbystem control tasks */

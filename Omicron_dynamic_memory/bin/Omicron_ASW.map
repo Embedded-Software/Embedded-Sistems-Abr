@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "C:\Users\Abraham Tezmol\Google Drive\ITESO\Especialidad  SE 2015 - Sistemas Embebidos\Software\2- Dynamic Memory allocation Handler\Omicron_dynamic_memory\bin\Omicron_ASW.abs"
+PROGRAM "Z:\Documents\Master\Embedded Systems\Homework_3_SCI_Driver_Configuration\bin\Omicron_ASW.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -29,13 +29,13 @@ xgate_config.cxgate.o                   Model: Unknown Model, Lang: ANSI-C
 xgate_vectors.cxgate.o                  Model: Unknown Model, Lang: ANSI-C
 tasks.c.o                               Model: BANKED,        Lang: ANSI-C
 rpm_control.c.o                         Model: BANKED,        Lang: ANSI-C
-cam_crank.c.o                           Model: BANKED,        Lang: ANSI-C
 cam_crank.cxgate.o                      Model: Unknown Model, Lang: ANSI-C
 main.c.o                                Model: BANKED,        Lang: ANSI-C
 communication_protocol.c.o              Model: BANKED,        Lang: ANSI-C
 scheduler.c.o                           Model: BANKED,        Lang: ANSI-C
 cnf_mem_alloc.c.o                       Model: BANKED,        Lang: ANSI-C
 memory_allocation.c.o                   Model: BANKED,        Lang: ANSI-C
+serial_cfg.c.o                          Model: BANKED,        Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -44,9 +44,9 @@ Entry point: 0x4000 (_Startup)
 _startupData is allocated at 0x400B and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     2
-  _Range   pZeroOut       0x2100     493
+  _Range   pZeroOut       0x2100     525
                           0xF91000     6
-  _Copy    *toCopyDownBeg 0x4207
+  _Copy    *toCopyDownBeg 0x4276
 } _startupData;
 
 *********************************************************************************************
@@ -55,15 +55,15 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             11     R     0x4000     0x400A   ROM_4000
 .startData                        96     R     0x400B     0x406A   ROM_4000
-.rodata                           44     R     0x406B     0x4096   ROM_4000
-NON_BANKED                       368     R     0x4097     0x4206   ROM_4000
-.copy                            359     R     0x4207     0x436D   ROM_4000
-.text                           2569     R     0xE000     0xEA08   ROM_E000
+.rodata                           83     R     0x406B     0x40BD   ROM_4000
+NON_BANKED                       440     R     0x40BE     0x4275   ROM_4000
+.copy                            427     R     0x4276     0x4420   ROM_4000
+.text                           2700     R     0xE000     0xEA8B   ROM_E000
 XGATE_VECTORS                    452     R   0xE08800   0xE089C3   PAGE_E0
 XGATE_CODE                       562     R   0xE089C4   0xE08BF5   PAGE_E0
 .stack                           256   R/W     0x2000     0x20FF   RAM
 SHARED_DATA                      308   R/W     0x2100     0x2233   RAM
-.data                             94   R/W     0x2234     0x2291   RAM
+.data                            158   R/W     0x2234     0x22D1   RAM
 XGATE_DATA                         6   R/W   0xF91000   0xF91005   RAM_F9
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -804,13 +804,13 @@ XGATE_DATA                         6   R/W   0xF91000   0xF91005   RAM_F9
 .abs_section_3ee                   2   N/I      0x3EE      0x3EF   .absSeg736
 .abs_section_3f2                   2   N/I      0x3F2      0x3F3   .absSeg737
 .abs_section_ff10                238     R     0xFF10     0xFFFD   .absSeg738
-.bss                              19   R/W     0x2292     0x22A4   RAM
-.common                           71   R/W     0x22A6     0x22EC   RAM
+.bss                              12   R/W     0x22D2     0x22DD   RAM
+.common                           47   R/W     0x22DE     0x230C   RAM
 .vectSeg739_vect                   2     R     0xFFFE     0xFFFF   .vectSeg739
 
 Summary of section sizes per section type:
-READ_ONLY (R):        125D (dec:     4701)
-READ_WRITE (R/W):      2F2 (dec:      754)
+READ_ONLY (R):        1393 (dec:     5011)
+READ_WRITE (R/W):      313 (dec:      787)
 NO_INIT (N/I):         383 (dec:      899)
 
 *********************************************************************************************
@@ -874,7 +874,7 @@ MODULE:                 -- mc9s12xep100.c.o --
      _CLKSEL                                     39       1       1       1   .abs_section_39
      _PLLCTL                                     3A       1       1       4   .abs_section_3a
      _RTICTL                                     3B       1       1       0   .abs_section_3b
-     _COPCTL                                     3C       1       1       1   .abs_section_3c
+     _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       2   .abs_section_3f
      _ECT_TIOS                                   40       1       1       0   .abs_section_40
      _ECT_CFORC                                  41       1       1       0   .abs_section_41
@@ -923,11 +923,11 @@ MODULE:                 -- mc9s12xep100.c.o --
      _SCI3DRH                                    C6       1       1       0   .abs_section_c6
      _SCI3DRL                                    C7       1       1       0   .abs_section_c7
      _SCI0ACR2                                   CA       1       1       1   .abs_section_ca
-     _SCI0CR2                                    CB       1       1       6   .abs_section_cb
-     _SCI0SR1                                    CC       1       1       3   .abs_section_cc
+     _SCI0CR2                                    CB       1       1       4   .abs_section_cb
+     _SCI0SR1                                    CC       1       1       2   .abs_section_cc
      _SCI0SR2                                    CD       1       1       0   .abs_section_cd
      _SCI0DRH                                    CE       1       1       0   .abs_section_ce
-     _SCI0DRL                                    CF       1       1       2   .abs_section_cf
+     _SCI0DRL                                    CF       1       1       3   .abs_section_cf
      _SCI1ACR2                                   D2       1       1       0   .abs_section_d2
      _SCI1CR2                                    D3       1       1       0   .abs_section_d3
      _SCI1SR1                                    D4       1       1       0   .abs_section_d4
@@ -1359,8 +1359,8 @@ MODULE:                 -- mc9s12xep100.c.o --
      _SCI7SR2                                   33D       1       1       0   .abs_section_33d
      _SCI7DRH                                   33E       1       1       0   .abs_section_33e
      _SCI7DRL                                   33F       1       1       0   .abs_section_33f
-     _PITCFLMT                                  340       1       1       5   .abs_section_340
-     _PITFLT                                    341       1       1       2   .abs_section_341
+     _PITCFLMT                                  340       1       1       3   .abs_section_340
+     _PITFLT                                    341       1       1       1   .abs_section_341
      _PITCE                                     342       1       1       3   .abs_section_342
      _PITMUX                                    343       1       1       3   .abs_section_343
      _PITINTE                                   344       1       1       3   .abs_section_344
@@ -1552,7 +1552,7 @@ MODULE:                 -- mc9s12xep100.c.o --
      _XGIF_2F_20                                392       2       2       0   .abs_section_392
      _XGIF_1F_10                                394       2       2       0   .abs_section_394
      _XGIF_0F_00                                396       2       2       0   .abs_section_396
-     _XGSWT                                     398       2       2       3   .abs_section_398
+     _XGSWT                                     398       2       2       2   .abs_section_398
      _XGSEM                                     39A       2       2       6   .abs_section_39a
      _XGPC                                      39E       2       2       0   .abs_section_39e
      _XGR1                                      3A2       2       2       0   .abs_section_3a2
@@ -1578,13 +1578,14 @@ MODULE:                 -- rtsxgate.cxgate.o (ansi_xg.lib) --
 - VARIABLES:
 MODULE:                 -- rtshc12.c.o (ansixb.lib) --
 - PROCEDURES:
-     _LMULU16x32                               4097       F      15       1   NON_BANKED  
-     _lDivMod                                  40A6      B9     185       1   NON_BANKED  
-     _LDIVU                                    415F       E      14       4   NON_BANKED  
+     _LCMP                                     40BE       A      10       7   NON_BANKED  
+     _LMULU16x32                               40C8       F      15       1   NON_BANKED  
+     _lDivMod                                  40D7      B9     185       1   NON_BANKED  
+     _LDIVU                                    4190       E      14       4   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- int_vectors.c.o --
 - PROCEDURES:
-     vfnDummy_D_Isr                            416D       1       1     115   NON_BANKED  
+     vfnDummy_D_Isr                            419E       1       1     115   NON_BANKED  
 - VARIABLES:
      vectors                                   FF10      EE     238       0   .abs_section_ff10
 MODULE:                 -- interrupt.c.o --
@@ -1599,10 +1600,9 @@ MODULE:                 -- pit.c.o --
 - PROCEDURES:
      vfnPIT0_Init                              E0E2      4F      79       2   .text       
      vfnPIT0_Start                             E131       D      13       2   .text       
-     vfnPIT1_Start                             E13E       D      13       2   .text       
-     vfnPIT_Channel0_Isr                       416E      18      24       1   NON_BANKED  
+     vfnPIT_Channel0_Isr                       419F      18      24       1   NON_BANKED  
 - VARIABLES:
-     vfnPIT0_Callback                          22A6       3       3       5   .common     
+     vfnPIT0_Callback                          22DE       3       3       5   .common     
 MODULE:                 -- pit.cxgate.o --
 - PROCEDURES:
      __X_vfnPIT1_Init                        E08A00      82     130       2   XGATE_CODE  
@@ -1611,44 +1611,36 @@ MODULE:                 -- pit.cxgate.o --
      vfnPIT1_Callback                          2100       2       2       4   SHARED_DATA 
 MODULE:                 -- pll.c.o --
 - PROCEDURES:
-     vfnPLL_Init                               E14B      32      50       2   .text       
-     vfnPLL_ON                                 E17D      18      24       2   .text       
-     vfnPLL_OFF                                E195       8       8       2   .text       
-     vfnSelectClockSource_PLL                  E19D      3A      58       2   .text       
-     vfnPll_Clock_Monitor_Isr                  4186      2B      43       1   NON_BANKED  
+     vfnPLL_Init                               E13E      32      50       2   .text       
+     vfnPLL_ON                                 E170      18      24       2   .text       
+     vfnPLL_OFF                                E188       8       8       2   .text       
+     vfnSelectClockSource_PLL                  E190      3A      58       2   .text       
+     vfnPll_Clock_Monitor_Isr                  41B7      2B      43       1   NON_BANKED  
 - VARIABLES:
-     gu16ClockGlobalStatus                     22AA       2       2       5   .common     
-     u16PLL_Loss_of_Lock_Counter               22AC       2       2       3   .common     
-     gu32BusFrequency                          22AE       4       4       8   .common     
+     gu16ClockGlobalStatus                     22E2       2       2       5   .common     
+     u16PLL_Loss_of_Lock_Counter               22E4       2       2       3   .common     
+     gu32BusFrequency                          22E6       4       4       8   .common     
 MODULE:                 -- serial.c.o --
 - PROCEDURES:
-     vfnSCI_Init                               E1D7      25      37       2   .text       
-     vfnSCI_Configure                          E1FC      1A      26       2   .text       
-     vfnSCI_ON                                 E216       A      10       2   .text       
-     vfnSCI_WriteBufferTx                      E220      3B      59       2   .text       
-     u8SCI_CheckRx                             E25B      12      18       2   .text       
-     vfnSCI_ClearRx                            E26D      1F      31       4   .text       
-     vfnSCI_ClearTx                            E28C      20      32       2   .text       
-     vfnSCI0_Tx_Rx_Isr                         41B1      56      86       1   NON_BANKED  
+     vfnSCI_Init                               E1CA     177     375       3   .text       
+     vfnSCI_WriteTx                            E341      31      49       2   .text       
+     u8SCI_CheckRx                             E372      11      17       2   .text       
+     vfnSCI_ClearRx                            E383      17      23       4   .text       
+     vfnSCI_ClearTx                            E39A      31      49       2   .text       
+     vfnSCI_WriteBufferTx                      E3CB      61      97       4   .text       
+     TxRx_Handler                              41E2      8E     142       1   NON_BANKED  
+     vfnSCI0_TxRx_Isr                          4270       6       6       1   NON_BANKED  
 - VARIABLES:
-     u8SCI0_Comm_Status                        22B2       1       1       7   .common     
-     u8SCI0_RxLength                           22B3       1       1       3   .common     
-     pu8SCI0_RxData                            22B4       3       3       4   .common     
-     pu8SCI0_Receive_Data_ptr                  22B8       3       3       7   .common     
-     pu8SCI0_Read_Receive_Data_ptr             22BC       3       3       2   .common     
-     u8SCI0_TxLength                           22BF       1       1       4   .common     
-     pu8SCI0_TxData                            22C0       3       3      10   .common     
-     pu8SCI0_Read_Transmit_Data_ptr            22C4       3       3       9   .common     
+     sci_cfg                                   22EA       2       2       6   .common     
+     sci_channel_status                        22EC       2       2      14   .common     
 MODULE:                 -- watchdog.c.o --
 - PROCEDURES:
-     vfnCOPWatchdog_Init                       E2AC       9       9       2   .text       
-     vfnCOPWatchdog_Reset                      E2B5      12      18       2   .text       
+     vfnCOPWatchdog_Reset                      E42C      12      18       2   .text       
 - VARIABLES:
-     gu8COPWatchdogStatus                      22C7       1       1       3   .common     
+     gu8COPWatchdogStatus                      22EE       1       1       2   .common     
 MODULE:                 -- xgate_config.c.o --
 - PROCEDURES:
-     vfn_XGATE_CPU_init                        E2C7      20      32       2   .text       
-     XGATE_SW_TRIGGER                          E2E7      3A      58       2   .text       
+     vfn_XGATE_CPU_init                        E43E      20      32       2   .text       
 - VARIABLES:
 MODULE:                 -- xgate_config.cxgate.o --
 - PROCEDURES:
@@ -1661,24 +1653,19 @@ MODULE:                 -- xgate_vectors.cxgate.o --
      XGATE_VectorTable                       E08800     1C4     452       1   XGATE_VECTORS
 MODULE:                 -- tasks.c.o --
 - PROCEDURES:
-     TASKS_LIST_1MS                            E321       9       9       2   .text       
-     TASKS_LIST_2MS_A                          E32A       9       9       2   .text       
-     TASKS_LIST_2MS_B                          E333       5       5       2   .text       
-     TASKS_LIST_10MS                           E338       D      13       2   .text       
-     TASKS_LIST_50MS                           E345       5       5       2   .text       
-     TASKS_LIST_100MS                          E34A       5       5       2   .text       
+     TASKS_LIST_1MS                            E45E       9       9       2   .text       
+     TASKS_LIST_2MS_A                          E467       9       9       2   .text       
+     TASKS_LIST_2MS_B                          E470       5       5       2   .text       
+     TASKS_LIST_10MS                           E475       D      13       2   .text       
+     TASKS_LIST_50MS                           E482       5       5       2   .text       
+     TASKS_LIST_100MS                          E487       5       5       2   .text       
 - VARIABLES:
 MODULE:                 -- rpm_control.c.o --
 - PROCEDURES:
-     vfnGetRPMButtons                          E34F      AD     173       3   .text       
-     vfnSetPITCounts                           E3FC      3B      59       2   .text       
+     vfnGetRPMButtons                          E48C      AD     173       3   .text       
+     vfnSetPITCounts                           E539      3B      59       2   .text       
 - VARIABLES:
-     u32Temp.1                                 2292       4       4       3   .bss        
-MODULE:                 -- cam_crank.c.o --
-- PROCEDURES:
-     vfnCamCrank_Init                          E437       A      10       2   .text       
-     vfnCamCrank_Start                         E441       5       5       2   .text       
-- VARIABLES:
+     u32Temp.1                                 22D2       4       4       3   .bss        
 MODULE:                 -- cam_crank.cxgate.o --
 - PROCEDURES:
      __X_vfnCamCrank_Callback                E08ACA     112     274       2   XGATE_CODE  
@@ -1694,49 +1681,45 @@ MODULE:                 -- cam_crank.cxgate.o --
      ptCamCrankChDescr_ptr                   F91004       2       2       2   XGATE_DATA  
 MODULE:                 -- main.c.o --
 - PROCEDURES:
-     main                                      E446      4C      76       2   .text       
-     vfnBackgroundSubsystemTasks               E492       1       1       2   .text       
+     main                                      E574      5A      90       2   .text       
+     vfnBackgroundSubsystemTasks               E5CE       1       1       2   .text       
 - VARIABLES:
+     cadena                                    2234      3F      63       1   .data       
 MODULE:                 -- communication_protocol.c.o --
 - PROCEDURES:
-     vfnCommProtocol_Init                      E493      33      51       2   .text       
-     vfnCOM_Init                               E4C6      10      16       2   .text       
-     vfnCOM_RxByte                             E4D6      24      36       2   .text       
-     vfnCOM_TxByte                             E4FA       F      15       3   .text       
+     vfnCOM_RxByte                             E5CF      26      38       2   .text       
+     vfnCOM_TxByte                             E5F5      10      16       3   .text       
 - VARIABLES:
-     au8COM_TX_message                         2234       7       7       1   .data       
-     u8ActivationStatus.1                      2296       1       1       1   .bss        
-     u8COM_State                               22C8       1       1       1   .common     
-     u32COM_control_timer                      22CA       4       4       2   .common     
-     u8Ack                                     22CE       1       1       1   .common     
+     au8COM_TX_message                         2274       7       7       1   .data       
+     u8ActivationStatus.1                      22D6       1       1       1   .bss        
 MODULE:                 -- scheduler.c.o --
 - PROCEDURES:
-     vfnScheduler_GetTaskRunning               E509       4       4       2   .text       
-     vfnScheduler_TaskStart                    E50D      1C      28      14   .text       
-     vfnScheduler_TaskActivate                 E529       F      15       8   .text       
-     vfnScheduler_TaskPreempt                  E538       8       8       2   .text       
-     vfnScheduler_TaskRestart                  E540      10      16       2   .text       
-     vfnScheduler_Init                         E550      89     137       2   .text       
-     vfnScheduler_Start                        E5D9       A      10       2   .text       
-     u8Scheduler_EventActivationHandler        E5E3      67     103       2   .text       
-     vfnSchedulepoint                          E64A      B5     181      12   .text       
-     vfnTask_Scheduler                         E6FF      A4     164       2   .text       
-     vfnScheduler_Callback                     E7A3      65     101       3   .text       
+     vfnScheduler_GetTaskRunning               E605       4       4       2   .text       
+     vfnScheduler_TaskStart                    E609      1C      28      14   .text       
+     vfnScheduler_TaskActivate                 E625       F      15       8   .text       
+     vfnScheduler_TaskPreempt                  E634       8       8       2   .text       
+     vfnScheduler_TaskRestart                  E63C      10      16       2   .text       
+     vfnScheduler_Init                         E64C      89     137       2   .text       
+     vfnScheduler_Start                        E6D5       A      10       2   .text       
+     u8Scheduler_EventActivationHandler        E6DF      67     103       2   .text       
+     vfnSchedulepoint                          E746      B5     181      12   .text       
+     vfnTask_Scheduler                         E7FB      A4     164       2   .text       
+     vfnScheduler_Callback                     E89F      65     101       3   .text       
 - VARIABLES:
      EmptyTask                                 406B       8       8      12   .rodata     
-     TimeTriggeredTasks                        223C      30      48      12   .data       
-     TimeTriggeredTask.1                       2298       2       2       3   .bss        
-     gu8Scheduler_Status                       22CF       1       1       3   .common     
-     gu8Scheduler_Counter                      22D0       1       1       5   .common     
-     TaskScheduler_Task_ID_Activated           22D2       2       2      12   .common     
-     TaskScheduler_Task_ID_Running             22D4       2       2       3   .common     
-     TasksScheduler_Task_ID_Backup             22D6       2       2       7   .common     
-     ptrTaskScheduler_Task_Running             22D8       2       2       4   .common     
-     u8_10ms_Counter                           22DA       1       1       4   .common     
-     u8_50ms_Counter                           22DB       1       1       4   .common     
-     u8_100ms_Counter                          22DC       1       1       4   .common     
-     EventTriggeredTasks                       22DE       2       2       8   .common     
-     EventTriggeredTasksInternal               22E0       2       2       5   .common     
+     TimeTriggeredTasks                        227C      30      48      12   .data       
+     TimeTriggeredTask.1                       22D8       2       2       3   .bss        
+     gu8Scheduler_Status                       22EF       1       1       3   .common     
+     gu8Scheduler_Counter                      22F0       1       1       5   .common     
+     TaskScheduler_Task_ID_Activated           22F2       2       2      12   .common     
+     TaskScheduler_Task_ID_Running             22F4       2       2       3   .common     
+     TasksScheduler_Task_ID_Backup             22F6       2       2       7   .common     
+     ptrTaskScheduler_Task_Running             22F8       2       2       4   .common     
+     u8_10ms_Counter                           22FA       1       1       4   .common     
+     u8_50ms_Counter                           22FB       1       1       4   .common     
+     u8_100ms_Counter                          22FC       1       1       4   .common     
+     EventTriggeredTasks                       22FE       2       2       8   .common     
+     EventTriggeredTasksInternal               2300       2       2       5   .common     
 MODULE:                 -- cnf_mem_alloc.c.o --
 - PROCEDURES:
 - VARIABLES:
@@ -1746,23 +1729,25 @@ MODULE:                 -- cnf_mem_alloc.c.o --
      DynamicMemAlloc_config                    4094       3       3       1   .rodata     
 MODULE:                 -- memory_allocation.c.o --
 - PROCEDURES:
-     vfnMemAlloc_NearInit                      E808      76     118       2   .text       
-     MemAlloc_NearReserve                      E87E      5A      90       4   .text       
-     vfnMemAlloc_NearErase                     E8D8      11      17       2   .text       
-     vfnMemAlloc_Init                          E8E9      90     144       2   .text       
-     MemAlloc_Reserve                          E979      79     121       4   .text       
-     vfnMemAlloc_Erase                         E9F2      17      23       2   .text       
+     vfnMemAlloc_NearInit                      E904      76     118       2   .text       
+     MemAlloc_NearReserve                      E97A      5A      90      10   .text       
+     vfnMemAlloc_NearErase                     E9D4      11      17       2   .text       
+     vfnMemAlloc_Init                          E9E5      90     144       2   .text       
+     vfnMemAlloc_Erase                         EA75      17      23       2   .text       
 - VARIABLES:
-     NearRamPages_status                       226C       8       8       1   .data       
-     PagedRamPagesFar_status                   2274      1E      30       1   .data       
-     nearStartAddress.1                        229A       2       2       3   .bss        
-     nearEndAddress.2                          229C       2       2       2   .bss        
-     farStartAddress.3                         229E       3       3       5   .bss        
-     farEndAddress.4                           22A2       3       3       3   .bss        
-     mem_alloc_nearcnf                         22E2       2       2       4   .common     
-     NearMemAlloc_Status                       22E4       3       3      10   .common     
-     mem_alloc_farcnf                          22E8       2       2       4   .common     
-     MemAlloc_Status                           22EA       3       3      10   .common     
+     NearRamPages_status                       22AC       8       8       1   .data       
+     PagedRamPagesFar_status                   22B4      1E      30       1   .data       
+     nearStartAddress.1                        22DA       2       2       3   .bss        
+     nearEndAddress.2                          22DC       2       2       2   .bss        
+     mem_alloc_nearcnf                         2302       2       2       4   .common     
+     NearMemAlloc_Status                       2304       3       3      10   .common     
+     mem_alloc_farcnf                          2308       2       2       4   .common     
+     MemAlloc_Status                           230A       3       3       7   .common     
+MODULE:                 -- serial_cfg.c.o --
+- PROCEDURES:
+- VARIABLES:
+     SCI_channel_cfg                           4097      24      36       1   .rodata     
+     SCI_config                                40BB       3       3       1   .rodata     
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -1771,61 +1756,59 @@ MODULE STATISTIC
   Start12.c.o                                  0     92      0
   mc9s12xep100.c.o                           899      0      0
   rtsxgate.cxgate.o (ansi_xg.lib)              0     60      0
-  rtshc12.c.o (ansixb.lib)                     0    214      0
+  rtshc12.c.o (ansixb.lib)                     0    224      0
   int_vectors.c.o                              0      1    238
   interrupt.c.o                                0      6      0
   io.c.o                                       0    139      0
-  pit.c.o                                      3    129      0
+  pit.c.o                                      3    116      0
   pit.cxgate.o                                 2    168      0
   pll.c.o                                      8    183      0
-  serial.c.o                                  18    299      0
-  watchdog.c.o                                 1     27      0
-  xgate_config.c.o                             0     90      0
+  serial.c.o                                   4    758      0
+  watchdog.c.o                                 1     18      0
+  xgate_config.c.o                             0     32      0
   xgate_config.cxgate.o                        0     30      0
   xgate_vectors.cxgate.o                       0      4    452
   tasks.c.o                                    0     46      0
   rpm_control.c.o                              4    232      0
-  cam_crank.c.o                                0     15      0
   cam_crank.cxgate.o                         311    300      0
-  main.c.o                                     0     77      0
-  communication_protocol.c.o                  14    118      0
+  main.c.o                                    63     91      0
+  communication_protocol.c.o                   8     54      0
   scheduler.c.o                               67    767      8
   cnf_mem_alloc.c.o                            0      0     36
-  memory_allocation.c.o                       58    513      0
-  other                                      256     98    359
+  memory_allocation.c.o                       52    392      0
+  serial_cfg.c.o                               0      0     39
+  other                                      256     98    427
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
   Init vfnInterrupt_Init vfnInputs_Outputs_Init vfnPIT0_Init vfnPIT0_Start 
-  vfnPIT1_Start vfnPLL_Init vfnPLL_ON vfnPLL_OFF vfnSelectClockSource_PLL 
-  vfnSCI_Init vfnSCI_Configure vfnSCI_ON vfnSCI_WriteBufferTx u8SCI_CheckRx 
-  vfnSCI_ClearRx vfnSCI_ClearTx vfnCOPWatchdog_Init vfnCOPWatchdog_Reset 
-  vfn_XGATE_CPU_init XGATE_SW_TRIGGER TASKS_LIST_1MS TASKS_LIST_2MS_A 
-  TASKS_LIST_2MS_B TASKS_LIST_10MS TASKS_LIST_50MS TASKS_LIST_100MS 
-  vfnGetRPMButtons vfnSetPITCounts vfnCamCrank_Init vfnCamCrank_Start main 
-  vfnBackgroundSubsystemTasks vfnCommProtocol_Init vfnCOM_Init vfnCOM_RxByte 
-  vfnCOM_TxByte vfnScheduler_GetTaskRunning vfnScheduler_TaskStart 
-  vfnScheduler_TaskActivate vfnScheduler_TaskPreempt vfnScheduler_TaskRestart 
-  vfnScheduler_Init vfnScheduler_Start u8Scheduler_EventActivationHandler 
-  vfnSchedulepoint vfnTask_Scheduler vfnScheduler_Callback vfnMemAlloc_NearInit 
-  MemAlloc_NearReserve vfnMemAlloc_NearErase vfnMemAlloc_Init MemAlloc_Reserve 
-  vfnMemAlloc_Erase 
+  vfnPLL_Init vfnPLL_ON vfnPLL_OFF vfnSelectClockSource_PLL vfnSCI_Init 
+  vfnSCI_WriteTx u8SCI_CheckRx vfnSCI_ClearRx vfnSCI_ClearTx 
+  vfnSCI_WriteBufferTx vfnCOPWatchdog_Reset vfn_XGATE_CPU_init TASKS_LIST_1MS 
+  TASKS_LIST_2MS_A TASKS_LIST_2MS_B TASKS_LIST_10MS TASKS_LIST_50MS 
+  TASKS_LIST_100MS vfnGetRPMButtons vfnSetPITCounts main 
+  vfnBackgroundSubsystemTasks vfnCOM_RxByte vfnCOM_TxByte 
+  vfnScheduler_GetTaskRunning vfnScheduler_TaskStart vfnScheduler_TaskActivate 
+  vfnScheduler_TaskPreempt vfnScheduler_TaskRestart vfnScheduler_Init 
+  vfnScheduler_Start u8Scheduler_EventActivationHandler vfnSchedulepoint 
+  vfnTask_Scheduler vfnScheduler_Callback vfnMemAlloc_NearInit 
+  MemAlloc_NearReserve vfnMemAlloc_NearErase vfnMemAlloc_Init vfnMemAlloc_Erase 
 SECTION: ".data"
-  au8COM_TX_message TimeTriggeredTasks NearRamPages_status 
+  cadena au8COM_TX_message TimeTriggeredTasks NearRamPages_status 
   PagedRamPagesFar_status 
 SECTION: ".bss"
   u32Temp.1 u8ActivationStatus.1 TimeTriggeredTask.1 nearStartAddress.1 
-  nearEndAddress.2 farStartAddress.3 farEndAddress.4 
+  nearEndAddress.2 
 SECTION: ".init"
   _Startup 
 SECTION: ".rodata"
   EmptyTask NearRamPages_config NearMemAlloc_config PagedRamPagesFar_config 
-  DynamicMemAlloc_config 
+  DynamicMemAlloc_config SCI_channel_cfg SCI_config 
 SECTION: "NON_BANKED"
-  _LMULU16x32 _lDivMod _LDIVU vfnDummy_D_Isr vfnPIT_Channel0_Isr 
-  vfnPll_Clock_Monitor_Isr vfnSCI0_Tx_Rx_Isr 
+  _LCMP _LMULU16x32 _lDivMod _LDIVU vfnDummy_D_Isr vfnPIT_Channel0_Isr 
+  vfnPll_Clock_Monitor_Isr TxRx_Handler vfnSCI0_TxRx_Isr 
 SECTION: "XGATE_VECTORS"
   XGATE_VectorTable 
 SECTION: "XGATE_CODE"
@@ -3314,11 +3297,8 @@ SECTION: ".abs_section_3f2"
   _TIM_PACNT 
 SECTION: ".common"
   vfnPIT0_Callback gu16ClockGlobalStatus u16PLL_Loss_of_Lock_Counter 
-  gu32BusFrequency u8SCI0_Comm_Status u8SCI0_RxLength pu8SCI0_RxData 
-  pu8SCI0_Receive_Data_ptr pu8SCI0_Read_Receive_Data_ptr u8SCI0_TxLength 
-  pu8SCI0_TxData pu8SCI0_Read_Transmit_Data_ptr gu8COPWatchdogStatus 
-  u8COM_State u32COM_control_timer u8Ack gu8Scheduler_Status 
-  gu8Scheduler_Counter TaskScheduler_Task_ID_Activated 
+  gu32BusFrequency sci_cfg sci_channel_status gu8COPWatchdogStatus 
+  gu8Scheduler_Status gu8Scheduler_Counter TaskScheduler_Task_ID_Activated 
   TaskScheduler_Task_ID_Running TasksScheduler_Task_ID_Backup 
   ptrTaskScheduler_Task_Running u8_10ms_Counter u8_50ms_Counter 
   u8_100ms_Counter EventTriggeredTasks EventTriggeredTasksInternal 
@@ -3376,7 +3356,7 @@ OBJECT LIST SORTED BY ADDRESS
      _CLKSEL                                     39       1       1       1   .abs_section_39
      _PLLCTL                                     3A       1       1       4   .abs_section_3a
      _RTICTL                                     3B       1       1       0   .abs_section_3b
-     _COPCTL                                     3C       1       1       1   .abs_section_3c
+     _COPCTL                                     3C       1       1       0   .abs_section_3c
      _ARMCOP                                     3F       1       1       2   .abs_section_3f
      _ECT_TIOS                                   40       1       1       0   .abs_section_40
      _ECT_CFORC                                  41       1       1       0   .abs_section_41
@@ -3469,11 +3449,11 @@ OBJECT LIST SORTED BY ADDRESS
      _SCI3DRL                                    C7       1       1       0   .abs_section_c7
      _SCI0BD                                     C8       2       2       1   .abs_section_c8
      _SCI0ACR2                                   CA       1       1       1   .abs_section_ca
-     _SCI0CR2                                    CB       1       1       6   .abs_section_cb
-     _SCI0SR1                                    CC       1       1       3   .abs_section_cc
+     _SCI0CR2                                    CB       1       1       4   .abs_section_cb
+     _SCI0SR1                                    CC       1       1       2   .abs_section_cc
      _SCI0SR2                                    CD       1       1       0   .abs_section_cd
      _SCI0DRH                                    CE       1       1       0   .abs_section_ce
-     _SCI0DRL                                    CF       1       1       2   .abs_section_cf
+     _SCI0DRL                                    CF       1       1       3   .abs_section_cf
      _SCI1BD                                     D0       2       2       0   .abs_section_d0
      _SCI1ACR2                                   D2       1       1       0   .abs_section_d2
      _SCI1CR2                                    D3       1       1       0   .abs_section_d3
@@ -3970,8 +3950,8 @@ OBJECT LIST SORTED BY ADDRESS
      _SCI7SR2                                   33D       1       1       0   .abs_section_33d
      _SCI7DRH                                   33E       1       1       0   .abs_section_33e
      _SCI7DRL                                   33F       1       1       0   .abs_section_33f
-     _PITCFLMT                                  340       1       1       5   .abs_section_340
-     _PITFLT                                    341       1       1       2   .abs_section_341
+     _PITCFLMT                                  340       1       1       3   .abs_section_340
+     _PITFLT                                    341       1       1       1   .abs_section_341
      _PITCE                                     342       1       1       3   .abs_section_342
      _PITMUX                                    343       1       1       3   .abs_section_343
      _PITINTE                                   344       1       1       3   .abs_section_344
@@ -4029,7 +4009,7 @@ OBJECT LIST SORTED BY ADDRESS
      _XGIF_2F_20                                392       2       2       0   .abs_section_392
      _XGIF_1F_10                                394       2       2       0   .abs_section_394
      _XGIF_0F_00                                396       2       2       0   .abs_section_396
-     _XGSWT                                     398       2       2       3   .abs_section_398
+     _XGSWT                                     398       2       2       2   .abs_section_398
      _XGSEM                                     39A       2       2       6   .abs_section_39a
      _XGCCR                                     39D       1       1       0   .abs_section_39d
      _XGPC                                      39E       2       2       0   .abs_section_39e
@@ -4075,115 +4055,100 @@ OBJECT LIST SORTED BY ADDRESS
      u16RPMValue                               222E       2       2      13   SHARED_DATA 
      u8NumberOfTeeth                           2230       1       1       1   SHARED_DATA 
      u16PITTimeOut                             2232       2       2       3   SHARED_DATA 
-     au8COM_TX_message                         2234       7       7       1   .data       
-     TimeTriggeredTasks                        223C      30      48      12   .data       
-     NearRamPages_status                       226C       8       8       1   .data       
-     PagedRamPagesFar_status                   2274      1E      30       1   .data       
-     u32Temp.1                                 2292       4       4       3   .bss        
-     u8ActivationStatus.1                      2296       1       1       1   .bss        
-     TimeTriggeredTask.1                       2298       2       2       3   .bss        
-     nearStartAddress.1                        229A       2       2       3   .bss        
-     nearEndAddress.2                          229C       2       2       2   .bss        
-     farStartAddress.3                         229E       3       3       5   .bss        
-     farEndAddress.4                           22A2       3       3       3   .bss        
-     vfnPIT0_Callback                          22A6       3       3       5   .common     
-     gu16ClockGlobalStatus                     22AA       2       2       5   .common     
-     u16PLL_Loss_of_Lock_Counter               22AC       2       2       3   .common     
-     gu32BusFrequency                          22AE       4       4       8   .common     
-     u8SCI0_Comm_Status                        22B2       1       1       7   .common     
-     u8SCI0_RxLength                           22B3       1       1       3   .common     
-     pu8SCI0_RxData                            22B4       3       3       4   .common     
-     pu8SCI0_Receive_Data_ptr                  22B8       3       3       7   .common     
-     pu8SCI0_Read_Receive_Data_ptr             22BC       3       3       2   .common     
-     u8SCI0_TxLength                           22BF       1       1       4   .common     
-     pu8SCI0_TxData                            22C0       3       3      10   .common     
-     pu8SCI0_Read_Transmit_Data_ptr            22C4       3       3       9   .common     
-     gu8COPWatchdogStatus                      22C7       1       1       3   .common     
-     u8COM_State                               22C8       1       1       1   .common     
-     u32COM_control_timer                      22CA       4       4       2   .common     
-     u8Ack                                     22CE       1       1       1   .common     
-     gu8Scheduler_Status                       22CF       1       1       3   .common     
-     gu8Scheduler_Counter                      22D0       1       1       5   .common     
-     TaskScheduler_Task_ID_Activated           22D2       2       2      12   .common     
-     TaskScheduler_Task_ID_Running             22D4       2       2       3   .common     
-     TasksScheduler_Task_ID_Backup             22D6       2       2       7   .common     
-     ptrTaskScheduler_Task_Running             22D8       2       2       4   .common     
-     u8_10ms_Counter                           22DA       1       1       4   .common     
-     u8_50ms_Counter                           22DB       1       1       4   .common     
-     u8_100ms_Counter                          22DC       1       1       4   .common     
-     EventTriggeredTasks                       22DE       2       2       8   .common     
-     EventTriggeredTasksInternal               22E0       2       2       5   .common     
-     mem_alloc_nearcnf                         22E2       2       2       4   .common     
-     NearMemAlloc_Status                       22E4       3       3      10   .common     
-     mem_alloc_farcnf                          22E8       2       2       4   .common     
-     MemAlloc_Status                           22EA       3       3      10   .common     
+     cadena                                    2234      3F      63       1   .data       
+     au8COM_TX_message                         2274       7       7       1   .data       
+     TimeTriggeredTasks                        227C      30      48      12   .data       
+     NearRamPages_status                       22AC       8       8       1   .data       
+     PagedRamPagesFar_status                   22B4      1E      30       1   .data       
+     u32Temp.1                                 22D2       4       4       3   .bss        
+     u8ActivationStatus.1                      22D6       1       1       1   .bss        
+     TimeTriggeredTask.1                       22D8       2       2       3   .bss        
+     nearStartAddress.1                        22DA       2       2       3   .bss        
+     nearEndAddress.2                          22DC       2       2       2   .bss        
+     vfnPIT0_Callback                          22DE       3       3       5   .common     
+     gu16ClockGlobalStatus                     22E2       2       2       5   .common     
+     u16PLL_Loss_of_Lock_Counter               22E4       2       2       3   .common     
+     gu32BusFrequency                          22E6       4       4       8   .common     
+     sci_cfg                                   22EA       2       2       6   .common     
+     sci_channel_status                        22EC       2       2      14   .common     
+     gu8COPWatchdogStatus                      22EE       1       1       2   .common     
+     gu8Scheduler_Status                       22EF       1       1       3   .common     
+     gu8Scheduler_Counter                      22F0       1       1       5   .common     
+     TaskScheduler_Task_ID_Activated           22F2       2       2      12   .common     
+     TaskScheduler_Task_ID_Running             22F4       2       2       3   .common     
+     TasksScheduler_Task_ID_Backup             22F6       2       2       7   .common     
+     ptrTaskScheduler_Task_Running             22F8       2       2       4   .common     
+     u8_10ms_Counter                           22FA       1       1       4   .common     
+     u8_50ms_Counter                           22FB       1       1       4   .common     
+     u8_100ms_Counter                          22FC       1       1       4   .common     
+     EventTriggeredTasks                       22FE       2       2       8   .common     
+     EventTriggeredTasksInternal               2300       2       2       5   .common     
+     mem_alloc_nearcnf                         2302       2       2       4   .common     
+     NearMemAlloc_Status                       2304       3       3      10   .common     
+     mem_alloc_farcnf                          2308       2       2       4   .common     
+     MemAlloc_Status                           230A       3       3       7   .common     
      _Startup                                  4000       B      11       1   .init       
      EmptyTask                                 406B       8       8      12   .rodata     
      NearRamPages_config                       4073       6       6       1   .rodata     
      NearMemAlloc_config                       4079       3       3       1   .rodata     
      PagedRamPagesFar_config                   407C      18      24       1   .rodata     
      DynamicMemAlloc_config                    4094       3       3       1   .rodata     
-     _LMULU16x32                               4097       F      15       1   NON_BANKED  
-     _lDivMod                                  40A6      B9     185       1   NON_BANKED  
-     _LDIVU                                    415F       E      14       4   NON_BANKED  
-     vfnDummy_D_Isr                            416D       1       1     115   NON_BANKED  
-     vfnPIT_Channel0_Isr                       416E      18      24       1   NON_BANKED  
-     vfnPll_Clock_Monitor_Isr                  4186      2B      43       1   NON_BANKED  
-     vfnSCI0_Tx_Rx_Isr                         41B1      56      86       1   NON_BANKED  
+     SCI_channel_cfg                           4097      24      36       1   .rodata     
+     SCI_config                                40BB       3       3       1   .rodata     
+     _LCMP                                     40BE       A      10       7   NON_BANKED  
+     _LMULU16x32                               40C8       F      15       1   NON_BANKED  
+     _lDivMod                                  40D7      B9     185       1   NON_BANKED  
+     _LDIVU                                    4190       E      14       4   NON_BANKED  
+     vfnDummy_D_Isr                            419E       1       1     115   NON_BANKED  
+     vfnPIT_Channel0_Isr                       419F      18      24       1   NON_BANKED  
+     vfnPll_Clock_Monitor_Isr                  41B7      2B      43       1   NON_BANKED  
+     TxRx_Handler                              41E2      8E     142       1   NON_BANKED  
+     vfnSCI0_TxRx_Isr                          4270       6       6       1   NON_BANKED  
      Init                                      E000      51      81       2   .text       
      vfnInterrupt_Init                         E051       6       6       2   .text       
      vfnInputs_Outputs_Init                    E057      8B     139       2   .text       
      vfnPIT0_Init                              E0E2      4F      79       2   .text       
      vfnPIT0_Start                             E131       D      13       2   .text       
-     vfnPIT1_Start                             E13E       D      13       2   .text       
-     vfnPLL_Init                               E14B      32      50       2   .text       
-     vfnPLL_ON                                 E17D      18      24       2   .text       
-     vfnPLL_OFF                                E195       8       8       2   .text       
-     vfnSelectClockSource_PLL                  E19D      3A      58       2   .text       
-     vfnSCI_Init                               E1D7      25      37       2   .text       
-     vfnSCI_Configure                          E1FC      1A      26       2   .text       
-     vfnSCI_ON                                 E216       A      10       2   .text       
-     vfnSCI_WriteBufferTx                      E220      3B      59       2   .text       
-     u8SCI_CheckRx                             E25B      12      18       2   .text       
-     vfnSCI_ClearRx                            E26D      1F      31       4   .text       
-     vfnSCI_ClearTx                            E28C      20      32       2   .text       
-     vfnCOPWatchdog_Init                       E2AC       9       9       2   .text       
-     vfnCOPWatchdog_Reset                      E2B5      12      18       2   .text       
-     vfn_XGATE_CPU_init                        E2C7      20      32       2   .text       
-     XGATE_SW_TRIGGER                          E2E7      3A      58       2   .text       
-     TASKS_LIST_1MS                            E321       9       9       2   .text       
-     TASKS_LIST_2MS_A                          E32A       9       9       2   .text       
-     TASKS_LIST_2MS_B                          E333       5       5       2   .text       
-     TASKS_LIST_10MS                           E338       D      13       2   .text       
-     TASKS_LIST_50MS                           E345       5       5       2   .text       
-     TASKS_LIST_100MS                          E34A       5       5       2   .text       
-     vfnGetRPMButtons                          E34F      AD     173       3   .text       
-     vfnSetPITCounts                           E3FC      3B      59       2   .text       
-     vfnCamCrank_Init                          E437       A      10       2   .text       
-     vfnCamCrank_Start                         E441       5       5       2   .text       
-     main                                      E446      4C      76       2   .text       
-     vfnBackgroundSubsystemTasks               E492       1       1       2   .text       
-     vfnCommProtocol_Init                      E493      33      51       2   .text       
-     vfnCOM_Init                               E4C6      10      16       2   .text       
-     vfnCOM_RxByte                             E4D6      24      36       2   .text       
-     vfnCOM_TxByte                             E4FA       F      15       3   .text       
-     vfnScheduler_GetTaskRunning               E509       4       4       2   .text       
-     vfnScheduler_TaskStart                    E50D      1C      28      14   .text       
-     vfnScheduler_TaskActivate                 E529       F      15       8   .text       
-     vfnScheduler_TaskPreempt                  E538       8       8       2   .text       
-     vfnScheduler_TaskRestart                  E540      10      16       2   .text       
-     vfnScheduler_Init                         E550      89     137       2   .text       
-     vfnScheduler_Start                        E5D9       A      10       2   .text       
-     u8Scheduler_EventActivationHandler        E5E3      67     103       2   .text       
-     vfnSchedulepoint                          E64A      B5     181      12   .text       
-     vfnTask_Scheduler                         E6FF      A4     164       2   .text       
-     vfnScheduler_Callback                     E7A3      65     101       3   .text       
-     vfnMemAlloc_NearInit                      E808      76     118       2   .text       
-     MemAlloc_NearReserve                      E87E      5A      90       4   .text       
-     vfnMemAlloc_NearErase                     E8D8      11      17       2   .text       
-     vfnMemAlloc_Init                          E8E9      90     144       2   .text       
-     MemAlloc_Reserve                          E979      79     121       4   .text       
-     vfnMemAlloc_Erase                         E9F2      17      23       2   .text       
+     vfnPLL_Init                               E13E      32      50       2   .text       
+     vfnPLL_ON                                 E170      18      24       2   .text       
+     vfnPLL_OFF                                E188       8       8       2   .text       
+     vfnSelectClockSource_PLL                  E190      3A      58       2   .text       
+     vfnSCI_Init                               E1CA     177     375       3   .text       
+     vfnSCI_WriteTx                            E341      31      49       2   .text       
+     u8SCI_CheckRx                             E372      11      17       2   .text       
+     vfnSCI_ClearRx                            E383      17      23       4   .text       
+     vfnSCI_ClearTx                            E39A      31      49       2   .text       
+     vfnSCI_WriteBufferTx                      E3CB      61      97       4   .text       
+     vfnCOPWatchdog_Reset                      E42C      12      18       2   .text       
+     vfn_XGATE_CPU_init                        E43E      20      32       2   .text       
+     TASKS_LIST_1MS                            E45E       9       9       2   .text       
+     TASKS_LIST_2MS_A                          E467       9       9       2   .text       
+     TASKS_LIST_2MS_B                          E470       5       5       2   .text       
+     TASKS_LIST_10MS                           E475       D      13       2   .text       
+     TASKS_LIST_50MS                           E482       5       5       2   .text       
+     TASKS_LIST_100MS                          E487       5       5       2   .text       
+     vfnGetRPMButtons                          E48C      AD     173       3   .text       
+     vfnSetPITCounts                           E539      3B      59       2   .text       
+     main                                      E574      5A      90       2   .text       
+     vfnBackgroundSubsystemTasks               E5CE       1       1       2   .text       
+     vfnCOM_RxByte                             E5CF      26      38       2   .text       
+     vfnCOM_TxByte                             E5F5      10      16       3   .text       
+     vfnScheduler_GetTaskRunning               E605       4       4       2   .text       
+     vfnScheduler_TaskStart                    E609      1C      28      14   .text       
+     vfnScheduler_TaskActivate                 E625       F      15       8   .text       
+     vfnScheduler_TaskPreempt                  E634       8       8       2   .text       
+     vfnScheduler_TaskRestart                  E63C      10      16       2   .text       
+     vfnScheduler_Init                         E64C      89     137       2   .text       
+     vfnScheduler_Start                        E6D5       A      10       2   .text       
+     u8Scheduler_EventActivationHandler        E6DF      67     103       2   .text       
+     vfnSchedulepoint                          E746      B5     181      12   .text       
+     vfnTask_Scheduler                         E7FB      A4     164       2   .text       
+     vfnScheduler_Callback                     E89F      65     101       3   .text       
+     vfnMemAlloc_NearInit                      E904      76     118       2   .text       
+     MemAlloc_NearReserve                      E97A      5A      90      10   .text       
+     vfnMemAlloc_NearErase                     E9D4      11      17       2   .text       
+     vfnMemAlloc_Init                          E9E5      90     144       2   .text       
+     vfnMemAlloc_Erase                         EA75      17      23       2   .text       
      vectors                                   FF10      EE     238       0   .abs_section_ff10
      XGATE_VectorTable                       E08800     1C4     452       1   XGATE_VECTORS
      __X_LDIVU                               E089C4      3C      60       2   XGATE_CODE  
@@ -4207,41 +4172,47 @@ rtsxgate.cxgate.o (ansi_xg.lib):
   __X_frexp __X_ldexp __X_modf 
 rtshc12.c.o (ansixb.lib):
   _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU 
-  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_P _LCMP_PP _LNEG _LCOM _LINC 
-  _LDEC _LMUL _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _ILSEXT _COPY 
-  _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH 
+  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP_P _LCMP_PP _LNEG _LCOM _LINC _LDEC 
+  _LMUL _LMULS16x32 _NEG_P _LDIVS _LMODU _LMODS _ILSEXT _COPY _CASE_DIRECT 
+  _CASE_DIRECT_BYTE _CASE_CHECKED _CASE_CHECKED_BYTE _CASE_SEARCH 
   _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL _FPCMP _PADD 
   _PSUB _PINC _PDEC 
 pit.c.o:
-  vfnPIT_Stop 
+  vfnPIT1_Start vfnPIT_Stop 
 pll.c.o:
   vfnSelectClockSource_XTAL 
 serial.c.o:
-  vfnSCI_OFF u8SCI_ReadRx u8SCI_GetStatus vfnSCI_WriteTx 
+  vfnSCI_OFF u8SCI_ReadRx u8SCI_GetStatus vfnSCI1_TxRx_Isr 
 watchdog.c.o:
-  vfnCOPWatchdog_MCUReset 
+  vfnCOPWatchdog_Init vfnCOPWatchdog_MCUReset 
+xgate_config.c.o:
+  XGATE_SW_TRIGGER 
 communication_protocol.c.o:
-  vfnCheckCommands vfnCOM_SendAck vfnCOM_SendRPM vfnCOM_Analyse 
+  vfnCommProtocol_Init vfnCOM_Init vfnCheckCommands vfnCOM_SendAck 
+  vfnCOM_SendRPM vfnCOM_Analyse 
 scheduler.c.o:
   vfnScheduler_Stop 
+memory_allocation.c.o:
+  MemAlloc_Reserve 
 NOT USED VARIABLES
 rtsxgate.cxgate.o (ansi_xg.lib):
   errno 
 rtshc12.c.o (ansixb.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
-cam_crank.c.o:
-  ptCamCrankChDescr_Duty_ptr 
 communication_protocol.c.o:
-  au8COM_TX_RPM_message au8COM_RX_message u8RxFormatID u8COM_RxLength 
-  u8COM_Byte_counter u8COM_Checksum u8RxSid u8RxData u8RxByteCount u16RPM_temp 
+  au8COM_TX_RPM_message au8COM_RX_message u8COM_State u32COM_control_timer 
+  u8RxFormatID u8COM_RxLength u8COM_Byte_counter u8COM_Checksum u8RxSid 
+  u8RxData u8RxByteCount u8Ack u16RPM_temp 
+memory_allocation.c.o:
+  farStartAddress.3 farEndAddress.4 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0x4207 ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x4276 ---- SIZE       5 ---
 Filling bytes inserted
  00900FE102
-------- ROM-ADDRESS: 0x420C ---- RAM-ADDRESS: 0x2102 ---- SIZE     118 ---
+------- ROM-ADDRESS: 0x427B ---- RAM-ADDRESS: 0x2102 ---- SIZE     118 ---
 Name of initialized Object : u8CrankConfig
  0101010101 0101010101 0101010101
  0101010101 0101010101 0101010101
@@ -4251,110 +4222,120 @@ Name of initialized Object : u8CrankConfig
  0101010101 0101010101 0101010101
  0101010101 0101010101 0101010101
  0101010101 0101010101 010101
-------- ROM-ADDRESS: 0x4282 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x42F1 ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0x4284 ---- RAM-ADDRESS: 0x217A ---- SIZE      24 ---
+------- ROM-ADDRESS: 0x42F3 ---- RAM-ADDRESS: 0x217A ---- SIZE      24 ---
 Name of initialized Object : u8CamConfig
  0101010101 0101010101 0101010101
  0101010101 01010101
-------- ROM-ADDRESS: 0x429C ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x430B ---- SIZE       5 ---
 Filling bytes inserted
  00050FE1AB
-------- ROM-ADDRESS: 0x42A1 ---- RAM-ADDRESS: 0x21AB ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x4310 ---- RAM-ADDRESS: 0x21AB ---- SIZE       5 ---
 Name of initialized Object : u8CamConfig:49
  0101010101
-------- ROM-ADDRESS: 0x42A6 ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x4315 ---- SIZE       5 ---
 Filling bytes inserted
- 006F0FE1C9
-------- ROM-ADDRESS: 0x42AB ---- RAM-ADDRESS: 0x21C9 ---- SIZE       4 ---
+ 00A90FE1C9
+------- ROM-ADDRESS: 0x431A ---- RAM-ADDRESS: 0x21C9 ---- SIZE       4 ---
 Name of initialized Object : u8CamConfig:79
  01010101
-------- ROM-ADDRESS: 0x42AF ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x431E ---- SIZE       5 ---
 Filling bytes inserted
  0000000000
-------- ROM-ADDRESS: 0x42B4 ---- RAM-ADDRESS: 0x21D2 ---- SIZE      26 ---
+------- ROM-ADDRESS: 0x4323 ---- RAM-ADDRESS: 0x21D2 ---- SIZE      26 ---
 Name of initialized Object : u8CamConfig:88
  0101010101 0101010101 0101010101
  0101010101 0101010101 01
-------- ROM-ADDRESS: 0x42CE ---- SIZE       8 ---
+------- ROM-ADDRESS: 0x433D ---- SIZE       8 ---
 Filling bytes inserted
  0000000000 000000
-------- ROM-ADDRESS: 0x42D6 ---- RAM-ADDRESS: 0x21F4 ---- SIZE      14 ---
+------- ROM-ADDRESS: 0x4345 ---- RAM-ADDRESS: 0x21F4 ---- SIZE      14 ---
 Name of initialized Object : cam_crank_channels:2
  E102000001 0001010078 0000E17A
-------- ROM-ADDRESS: 0x42E4 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x4353 ---- SIZE       4 ---
 Filling bytes inserted
  00000000
-------- ROM-ADDRESS: 0x42E8 ---- RAM-ADDRESS: 0x2206 ---- SIZE      20 ---
+------- ROM-ADDRESS: 0x4357 ---- RAM-ADDRESS: 0x2206 ---- SIZE      20 ---
 Name of initialized Object : cam_crank_channels:20
  0202027800 00E17A0000 000F040202
  780000E17A
-------- ROM-ADDRESS: 0x42FC ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x436B ---- SIZE       4 ---
 Filling bytes inserted
  00000000
-------- ROM-ADDRESS: 0x4300 ---- RAM-ADDRESS: 0x221E ---- SIZE      16 ---
+------- ROM-ADDRESS: 0x436F ---- RAM-ADDRESS: 0x221E ---- SIZE      16 ---
 Name of initialized Object : cam_crank_channels:44
  0802027800 00E17A0000 000F100202
  78
-------- ROM-ADDRESS: 0x4310 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x437F ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0x4311 ---- RAM-ADDRESS: 0x222F ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4380 ---- RAM-ADDRESS: 0x222F ---- SIZE       1 ---
 Name of initialized Object : u16RPMValue:1
  0A
-------- ROM-ADDRESS: 0x4312 ---- RAM-ADDRESS: 0x2230 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4381 ---- RAM-ADDRESS: 0x2230 ---- SIZE       1 ---
 Name of initialized Object : u8NumberOfTeeth
  3C
-------- ROM-ADDRESS: 0x4313 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x4382 ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0x4315 ---- RAM-ADDRESS: 0x2233 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4384 ---- RAM-ADDRESS: 0x2233 ---- SIZE       1 ---
 Name of initialized Object : u16PITTimeOut:1
  64
-------- ROM-ADDRESS: 0x4316 ---- RAM-ADDRESS: 0x2234 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x4385 ---- RAM-ADDRESS: 0x2234 ---- SIZE      62 ---
+Name of initialized Object : cadena
+ 5468697320 6973206120 7465737420
+ 6F66207468 6520536572 69616C2043
+ 6F6D6D756E 6963617469 6F6E20496E
+ 7465726661 6365204472 697665722E
+ 2E2E
+------- ROM-ADDRESS: 0x43C3 ---- SIZE       5 ---
+Filling bytes inserted
+ 00420FE274
+------- ROM-ADDRESS: 0x43C8 ---- RAM-ADDRESS: 0x2274 ---- SIZE       4 ---
 Name of initialized Object : au8COM_TX_message
  51780301
-------- ROM-ADDRESS: 0x431A ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x43CC ---- SIZE       6 ---
 Filling bytes inserted
- 00380FE23E
-------- ROM-ADDRESS: 0x431F ---- RAM-ADDRESS: 0x223E ---- SIZE      46 ---
+ 0000000000 00
+------- ROM-ADDRESS: 0x43D2 ---- RAM-ADDRESS: 0x227E ---- SIZE      46 ---
 Name of initialized Object : TimeTriggeredTasks:2
- E321000000 050001E32A 0000000400
- 02E3330000 00040003E3 3800000003
- 0004E34500 0000020005 E34A000000
+ E45E000000 050001E467 0000000400
+ 02E4700000 00040003E4 7500000003
+ 0004E48200 0000020005 E487000000
  01
-------- ROM-ADDRESS: 0x434D ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4400 ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0x434E ---- RAM-ADDRESS: 0x226D ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4401 ---- RAM-ADDRESS: 0x22AD ---- SIZE       1 ---
 Name of initialized Object : NearRamPages_status:1
  10
-------- ROM-ADDRESS: 0x434F ---- SIZE       7 ---
+------- ROM-ADDRESS: 0x4402 ---- SIZE       7 ---
 Filling bytes inserted
  0000000000 0000
-------- ROM-ADDRESS: 0x4356 ---- RAM-ADDRESS: 0x2275 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0x4409 ---- RAM-ADDRESS: 0x22B5 ---- SIZE       1 ---
 Name of initialized Object : PagedRamPagesFar_status:1
  10
-------- ROM-ADDRESS: 0x4357 ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x440A ---- SIZE       5 ---
 Filling bytes inserted
- 00010FE27F
-------- ROM-ADDRESS: 0x435C ---- RAM-ADDRESS: 0x227F ---- SIZE       1 ---
+ 00010FE2BF
+------- ROM-ADDRESS: 0x440F ---- RAM-ADDRESS: 0x22BF ---- SIZE       1 ---
 Name of initialized Object : PagedRamPagesFar_status:11
  10
-------- ROM-ADDRESS: 0x435D ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x4410 ---- SIZE       5 ---
 Filling bytes inserted
- 00010FE289
-------- ROM-ADDRESS: 0x4362 ---- RAM-ADDRESS: 0x2289 ---- SIZE       1 ---
+ 00010FE2C9
+------- ROM-ADDRESS: 0x4415 ---- RAM-ADDRESS: 0x22C9 ---- SIZE       1 ---
 Name of initialized Object : PagedRamPagesFar_status:21
  10
-------- ROM-ADDRESS: 0x4363 ---- SIZE       5 ---
+------- ROM-ADDRESS: 0x4416 ---- SIZE       5 ---
 Filling bytes inserted
  00040F9000
-------- ROM-ADDRESS: 0x4368 ---- RAM-ADDRESS: 0xF91000 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0x441B ---- RAM-ADDRESS: 0xF91000 ---- SIZE       4 ---
 Name of initialized Object : CAM_CRANK_Control
  0500E1F2
-------- ROM-ADDRESS: 0x436C ---- SIZE       2 ---
+------- ROM-ADDRESS: 0x441F ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -4368,13 +4349,14 @@ TimeTriggeredTasks        USES TASKS_LIST_1MS TASKS_LIST_2MS_A
 _Startup                  USES __SEG_END_SSTACK Init main 
 NearMemAlloc_config       USES NearRamPages_config 
 DynamicMemAlloc_config    USES PagedRamPagesFar_config 
+SCI_config                USES SCI_channel_cfg 
 _LDIVU                    USES _lDivMod 
 vfnPIT_Channel0_Isr       USES _PITTF vfnPIT0_Callback 
 vfnPll_Clock_Monitor_Isr  USES _CRGFLG u16PLL_Loss_of_Lock_Counter 
                                 gu16ClockGlobalStatus 
-vfnSCI0_Tx_Rx_Isr         USES _SCI0SR1 _SCI0DRL pu8SCI0_Receive_Data_ptr 
-                                u8SCI0_RxLength u8SCI0_Comm_Status _SCI0CR2 u8SCI0_TxLength 
-                                pu8SCI0_Read_Transmit_Data_ptr pu8SCI0_TxData 
+TxRx_Handler              USES _SCI0SR1 _SCI0DRL sci_channel_status 
+                                vfnSCI_WriteTx _SCI0CR2 
+vfnSCI0_TxRx_Isr          USES TxRx_Handler 
 Init                      USES _startupData 
 vfnInterrupt_Init         USES _IVBR 
 vfnInputs_Outputs_Init    USES _DDRAB _PORTAB _DDR01AD0 _ATD0DIEN _PER01AD0 
@@ -4382,7 +4364,6 @@ vfnPIT0_Init              USES _PITCFLMT _PITCE _PITMUX _PITINTE _PITTF
                                 gu32BusFrequency _LDIVU _PITMTLD0 _PITLD0 _INT_CFADDR 
                                 _INT_CFDATA5 vfnPIT0_Callback 
 vfnPIT0_Start             USES _PITCFLMT _PITFLT 
-vfnPIT1_Start             USES _PITCFLMT _PITFLT 
 vfnPLL_Init               USES vfnPLL_OFF _SYNR _REFDV _POSTDIV _PLLCTL 
                                 _CRGFLG _CRGINT vfnPLL_ON vfnSelectClockSource_PLL 
 vfnPLL_ON                 USES _PLLCTL u16PLL_Loss_of_Lock_Counter _CRGFLG 
@@ -4390,22 +4371,17 @@ vfnPLL_ON                 USES _PLLCTL u16PLL_Loss_of_Lock_Counter _CRGFLG
 vfnPLL_OFF                USES _PLLCTL gu16ClockGlobalStatus 
 vfnSelectClockSource_PLL  USES _CLKSEL gu16ClockGlobalStatus _SYNR _LMULU16x32 
                                 _REFDV _LDIVU gu32BusFrequency 
-vfnSCI_Init               USES _SCI0ACR2 _SCI0CR2 MemAlloc_Reserve 
-                                pu8SCI0_RxData pu8SCI0_TxData 
-vfnSCI_Configure          USES _SCI0BD vfnSCI_ClearRx vfnSCI_ClearTx 
-vfnSCI_ON                 USES _SCI0CR2 u8SCI0_Comm_Status 
-vfnSCI_WriteBufferTx      USES u8SCI0_Comm_Status pu8SCI0_TxData 
-                                u8SCI0_TxLength _SCI0CR2 
-u8SCI_CheckRx             USES u8SCI0_RxLength 
-vfnSCI_ClearRx            USES pu8SCI0_RxData pu8SCI0_Receive_Data_ptr 
-                                pu8SCI0_Read_Receive_Data_ptr u8SCI0_RxLength 
-vfnSCI_ClearTx            USES _SCI0CR2 pu8SCI0_TxData 
-                                pu8SCI0_Read_Transmit_Data_ptr u8SCI0_TxLength u8SCI0_Comm_Status 
-vfnCOPWatchdog_Init       USES _COPCTL gu8COPWatchdogStatus 
+vfnSCI_Init               USES sci_cfg MemAlloc_NearReserve sci_channel_status 
+                                vfnSCI_Init _SCI0ACR2 _SCI0CR2 _LCMP gu32BusFrequency 
+                                _LDIVU _SCI0BD vfnSCI_ClearRx vfnSCI_ClearTx 
+vfnSCI_WriteTx            USES _SCI0SR1 _SCI0DRL sci_channel_status 
+u8SCI_CheckRx             USES sci_channel_status 
+vfnSCI_ClearRx            USES sci_channel_status 
+vfnSCI_ClearTx            USES _SCI0CR2 sci_channel_status 
+vfnSCI_WriteBufferTx      USES sci_channel_status _SCI0CR2 
 vfnCOPWatchdog_Reset      USES gu8COPWatchdogStatus _ARMCOP 
 vfn_XGATE_CPU_init        USES XGATE_VectorTable _XGISP31 _INT_CFADDR 
                                 _INT_CFDATA1 _XGMCTL 
-XGATE_SW_TRIGGER          USES _XGSWT 
 TASKS_LIST_1MS            USES vfnCOM_RxByte vfnSchedulepoint 
 TASKS_LIST_2MS_A          USES vfnCOPWatchdog_Reset vfnSchedulepoint 
 TASKS_LIST_2MS_B          USES vfnSchedulepoint 
@@ -4417,18 +4393,12 @@ vfnGetRPMButtons          USES _XGSEM cam_crank_channels vfnGetRPMButtons
                                 _PTIP u16RPMValue 
 vfnSetPITCounts           USES _XGSEM u8NumberOfTeeth u16RPMValue u32Temp.1 
                                 _LDIVU u16PITTimeOut 
-vfnCamCrank_Init          USES XGATE_SW_TRIGGER 
-vfnCamCrank_Start         USES vfnPIT1_Start 
 main                      USES _XGMCTL vfn_XGATE_CPU_init vfnInterrupt_Init 
                                 vfnPLL_Init NearMemAlloc_config vfnMemAlloc_NearInit 
                                 DynamicMemAlloc_config vfnMemAlloc_Init vfnInputs_Outputs_Init 
-                                vfnCommProtocol_Init vfnScheduler_Init vfnScheduler_Start 
-                                vfnCOPWatchdog_Init vfnCamCrank_Init vfnCamCrank_Start 
-                                vfnTask_Scheduler vfnBackgroundSubsystemTasks 
-vfnCommProtocol_Init      USES vfnSCI_Init gu32BusFrequency _LDIVU 
-                                vfnSCI_Configure vfnSCI_ON pu8SCI0_TxData 
-                                pu8SCI0_Read_Transmit_Data_ptr vfnCOM_Init 
-vfnCOM_Init               USES u8COM_State u32COM_control_timer u8Ack 
+                                vfnScheduler_Init vfnScheduler_Start SCI_config vfnSCI_Init 
+                                cadena vfnSCI_WriteBufferTx vfnTask_Scheduler 
+                                vfnBackgroundSubsystemTasks 
 vfnCOM_RxByte             USES u8SCI_CheckRx vfnCOM_TxByte 
                                 u8Scheduler_EventActivationHandler u8ActivationStatus.1 vfnSCI_ClearRx 
 vfnCOM_TxByte             USES au8COM_TX_message vfnSCI_WriteBufferTx 
@@ -4462,10 +4432,8 @@ MemAlloc_NearReserve      USES NearMemAlloc_Status nearEndAddress.2
                                 nearStartAddress.1 
 vfnMemAlloc_Init          USES mem_alloc_farcnf PagedRamPagesFar_status 
                                 MemAlloc_Status vfnMemAlloc_Erase 
-MemAlloc_Reserve          USES MemAlloc_Status farStartAddress.3 
-                                farEndAddress.4 
 vectors                   USES vfnDummy_D_Isr vfnPIT_Channel0_Isr 
-                                vfnSCI0_Tx_Rx_Isr _Startup vfnPll_Clock_Monitor_Isr 
+                                vfnSCI0_TxRx_Isr _Startup vfnPll_Clock_Monitor_Isr 
 XGATE_VectorTable         USES __X_ErrorHandler __X_vfnCamCrank_Init_XGATE_Isr 
                                 __X_vfnPIT_Channel1_Isr 
 __X_vfnPIT1_Init          USES _PITCE _PITMUX _PITINTE _PITTF gu32BusFrequency 
@@ -4530,24 +4498,6 @@ DEPENDENCY TREE
  |  |       
  |  +- vfnInputs_Outputs_Init
  |  |    
- |  +- vfnCommProtocol_Init
- |  |  | 
- |  |  +- vfnSCI_Init         
- |  |  |  | 
- |  |  |  +- MemAlloc_Reserve    
- |  |  |       
- |  |  +- _LDIVU               (see above)
- |  |  |  
- |  |  +- vfnSCI_Configure    
- |  |  |  | 
- |  |  |  +- vfnSCI_ClearRx      
- |  |  |  |    
- |  |  |  +- vfnSCI_ClearTx      
- |  |  |       
- |  |  +- vfnSCI_ON           
- |  |  |    
- |  |  +- vfnCOM_Init         
- |  |       
  |  +- vfnScheduler_Init   
  |  |  | 
  |  |  +- vfnScheduler_Callback
@@ -4566,8 +4516,8 @@ DEPENDENCY TREE
  |  |  |  |  |  |  |       
  |  |  |  |  |  |  +- u8Scheduler_EventActivationHandler
  |  |  |  |  |  |  |    
- |  |  |  |  |  |  +- vfnSCI_ClearRx       (see above)
- |  |  |  |  |  |     
+ |  |  |  |  |  |  +- vfnSCI_ClearRx      
+ |  |  |  |  |  |       
  |  |  |  |  |  +- vfnSchedulepoint    
  |  |  |  |  |     | 
  |  |  |  |  |     +- vfnScheduler_GetTaskRunning
@@ -4618,16 +4568,20 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- vfnPIT0_Start       
  |  |       
- |  +- vfnCOPWatchdog_Init 
- |  |    
- |  +- vfnCamCrank_Init    
+ |  +- vfnSCI_Init         
  |  |  | 
- |  |  +- XGATE_SW_TRIGGER    
+ |  |  +- MemAlloc_NearReserve (see above)
+ |  |  |  
+ |  |  +- _LCMP               
+ |  |  |    
+ |  |  +- _LDIVU               (see above)
+ |  |  |  
+ |  |  +- vfnSCI_ClearRx       (see above)
+ |  |  |  
+ |  |  +- vfnSCI_ClearTx      
  |  |       
- |  +- vfnCamCrank_Start   
- |  |  | 
- |  |  +- vfnPIT1_Start       
- |  |       
+ |  +- vfnSCI_WriteBufferTx (see above)
+ |  |  
  |  +- vfnTask_Scheduler   
  |  |  | 
  |  |  +- TimeTriggeredTasks   (see above)
@@ -4650,8 +4604,12 @@ DEPENDENCY TREE
  |    
  +- vfnPIT_Channel0_Isr 
  |    
- +- vfnSCI0_Tx_Rx_Isr   
- |    
+ +- vfnSCI0_TxRx_Isr    
+ |  | 
+ |  +- TxRx_Handler        
+ |     | 
+ |     +- vfnSCI_WriteTx      
+ |          
  +- _Startup             (see above)
  |  
  +- vfnPll_Clock_Monitor_Isr
@@ -4662,6 +4620,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 4701
+Number of blocks to be downloaded: 7
+Total size of all blocks to be downloaded: 5011
 

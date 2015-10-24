@@ -36,6 +36,8 @@
 #define D6         64
 #define D7         128
 
+#define Pto_Prueba PORTA
+
 /*-- Macros ------------------------------------------------------------------*/
 /* Indicator LEDs handling */
 
@@ -51,6 +53,9 @@
 
 void vfnGPIO_FlashMainLED(UINT8 u8LED0,UINT8 u8LED1,UINT8 u8LED2);
 void vfnGPIO_LED_Init(void);
+void fncGPIO_SchedulerInit(void);
+void fncGPIO_ConmutaPin1(UINT8 u8TurnOn);
+void fncGPIO_ConmutaPin2(UINT8 u8TurnOn);
 
 
 #endif /* _GPIO_H */

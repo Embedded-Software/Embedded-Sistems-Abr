@@ -94,7 +94,7 @@ void (* near const vectors[])(void) @ 0xFF10 =
   vfnDummy_D_Isr,          /* 0x3A  0xFF74 ivVpit3         */
   vfnDummy_D_Isr,          /* 0x3B  0xFF76 ivVpit2         */
   vfnDummy_D_Isr,          /* 0x3C  0xFF78 ivVpit1         */
-  vfnPIT_Channel0_Isr,   /* 0x3D  0xFF7A ivVpit0         */
+  vfnPIT_Channel0_Isr,     /* 0x3D  0xFF7A ivVpit0         */
   vfnDummy_D_Isr,          /* 0x3E  0xFF7C ivVu8Reserved65   */
   vfnDummy_D_Isr,          /* 0x3F  0xFF7E ivVapi          */
   vfnDummy_D_Isr,          /* 0x40  0xFF80 ivVlvi          */
@@ -140,12 +140,12 @@ void (* near const vectors[])(void) @ 0xFF10 =
   vfnDummy_D_Isr,          /* 0x68  0xFFD0 ivVatd          */
   vfnDummy_D_Isr,          /* 0x69  0xFFD2 ivVu8Reserved22   */
     #ifdef SERIAL_COMM_CHANNEL1
-  vfnSCI1_Tx_Rx_Isr,/* 0x6A  0xFFD4 ivVsci1         */
+  vfnSCI1_TxRx_Isr,/* 0x6A  0xFFD4 ivVsci1         */
     #else
   vfnDummy_D_Isr,          /* 0x6A  0xFFD4 ivVsci1         */
     #endif
     #ifdef SERIAL_COMM_CHANNEL0
-  vfnSCI0_Tx_Rx_Isr,/* 0x6B  0xFFD6 ivVsci0         */
+  vfnSCI0_TxRx_Isr,/* 0x6B  0xFFD6 ivVsci0         */
     #else
   vfnDummy_D_Isr,          /* 0x6B  0xFFD6 ivVsci0         */
     #endif

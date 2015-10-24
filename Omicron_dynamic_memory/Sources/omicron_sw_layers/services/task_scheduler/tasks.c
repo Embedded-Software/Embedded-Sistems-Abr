@@ -66,5 +66,3 @@ void TASKS_LIST_100MS( void )
     /* vfnCOM_SendRPM();*/
     vfnSchedulepoint();
 }
-
-

@@ -48,9 +48,16 @@
 /** High level Serial communication protocol */
 #include      "communication_protocol.h"
 
+#include    "serial.h"
+
 /*****************************************************************************************************
 * Definition of module wide VARIABLEs - NOT for use in other modules
 *****************************************************************************************************/
+
+/*                                     1         2         3         4         5         6         7         8         9 */
+/*               012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 */
+UINT8 cadena[]= "This is a test of the Serial Communication Interface Driver...";
+
 
 /*****************************************************************************************************
 * Declaration of module wide TYPEs - NOT for use in other modules

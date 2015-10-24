@@ -103,4 +103,40 @@ void vfnGPIO_LED_Init(void)
     DDRP =  0x00;  
 }
 
+
+/* */
+void fncGPIO_SchedulerInit(void) 
+{
+  Pto_Prueba |= 0x00;
+  DDRB = 0x0C;
+}
+
+/* */
+void fncGPIO_ConmutaPin1(UINT8 u8TurnOn)
+{
+  if(u8TurnOn) 
+  {
+    Pto_Prueba |= 0x08;
+  }
+  else
+  {
+    Pto_Prueba &= 0xF7;
+  }
+}
+
+/* */
+void fncGPIO_ConmutaPin2(UINT8 u8TurnOn)
+{
+  if(u8TurnOn) 
+  {
+    Pto_Prueba |= 0x04;
+  }
+  else
+  {
+    Pto_Prueba &= 0xFB;
+  }
+}
+
+
+
 /****************************************************************************************************/
