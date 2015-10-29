@@ -1,0 +1,102 @@
+              /******************************************************************************
+Copyright (c) Freescale Semiconductor 2006
+File Name		 :	$RCSfile: xgate_XPWM.cxgate,v $
+Current Revision :	$Revision: 1.10 $
+Notes            :  
+*******************************************************************************/
+//#include "per_XDx512_L15Y.h"
+#include "mc9s12xep100.h"
+#include "xgate_config.h"
+#include "typedefs.h"
+#include "pwm_cfg.h"
+
+#pragma CODE_SEG XGATE_CODE
+#pragma DATA_SEG XGATE_DATA
+
+
+
+ /* Buffer to hold individual enable flags for each PWM channel */       
+static UINT8 Pwm__u8EnableBuffer;                
+
+/*****************************************************************************************************/
+/**
+* \brief    Initiate configuration of pwm
+* \author   Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+* \param    
+* \return   
+*/
+/* void Pwm_Init(const Pwm_ConfigChannel* ConfigPtr){*/
+/*****************************************************************************************************/
+
+//void interrupt Pwm_Init_Isr(void)
+void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr) 
+//void interrupt Pwm_Init_Isr(const Pwm_ConfigChannel* ConfigPtr)
+{
+  Pwm_ChannelType xTempChannId;
+  Pwm_PeriodType  xTempPeriod;
+  UINT8 u8DeviceIndex;
+  UINT8 u8ChannelIndex;
+  UINT8 u8Temp;
+  UINT16 u16DesiredDuty;
+  volatile UINT32 u32DesiredDuty=0;
+
+  
+  PWMCAE=0x00; /*Left aligned mode to all channels on this device */
+  
+  //#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+  PWMCLK=0xAA; /*selecting  the clock SA and SB source for concatenated channels */ 
+  PWMCTL=0xF0; /*it will use the concatenation of (0,1) (2,3) (4,5) (6,7) registers  */
+  //#elif PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+  //PWMCLK=0xFF; /*selecting  the clock SA and SB source for all channels */ 
+  //#endif   
+  
+  Pwm__u8EnableBuffer = 0;
+  
+  /* the pwm output will be in the low order 8bit channel pin PWME7 in the case of 6 and 7 concatenation*/
+  /* the pwm polarity will be controlled by by the PPOLx bit of the corresponding low order 8-bit channel, in the case of 6 and 7 concatenation will be PPOL7 */
+  /* init all devices, in this case the s12exp100 only has one */
+  for(u8DeviceIndex=0; u8DeviceIndex < PWM_SIZE(astPwmDevices,Pwm_ConfigDevice); u8DeviceIndex++) 
+  {    
+    PWMPRCLK=BusClockPeriod;
+    PWMSCLA=0x01;/*astPwmDevices[u8DeviceIndex].pwmsclA;*/ /*selecting the scaler value A*/
+    PWMSCLB=0x01;/*astPwmDevices[u8DeviceIndex].pwmsclB;*/ /*selecting the scaler value B*/
+    u8Temp=0;
+    /* Initialize all channels for each device */
+    for(u8ChannelIndex=0; u8ChannelIndex < PWM_SIZE(astPwmChannels,Pwm_ConfigChannel);u8ChannelIndex++)  
+    {
+      xTempPeriod     = astPwmDevices[u8DeviceIndex].ptrPwm_ConfigType[u8ChannelIndex].xPeriodType;
+      xTempChannId    = astPwmDevices[u8DeviceIndex].ptrPwm_ConfigType[u8ChannelIndex].xChannelType;
+      u16DesiredDuty  = astPwmDevices[u8DeviceIndex].ptrPwm_ConfigType[u8ChannelIndex].u16DutyCycle;
+      
+      //#if PWM_HW_TYPE==PWM_16BIT_HW
+      /* 16-bit mode */
+      Pwm_CheckChannelId(&xTempChannId);
+      //#endif
+      
+      u8Temp = ON<<xTempChannId;
+      Pwm__u8EnableBuffer |= u8Temp;/* Prepare the Enabling of the corresponding channel */
+      
+      Pwm_SetPeriodAndDuty(u8ChannelIndex,xTempPeriod,u16DesiredDuty);
+    }/* CHANNEL for */
+    
+    PWME |= Pwm__u8EnableBuffer; /* Enable ALL CONFIGURED channels at the same time */
+  }/* DEVICE for */   
+  
+  /* Clear interrupt flag */
+   // XGATE.xgswt.word = 0x01fe;       //From PWM for XGATE DRV
+}
+/*****************************************************************************************************/
+/**
+* \brief    Deinitialize PWM
+* \author  Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+* \param    
+* \return   
+*/
+void interrupt Pwm_DeInit_Thread(void)
+{
+  Pwm__u8EnableBuffer^=0xFF;/* invert the enable mask */
+  PWME&=Pwm__u8EnableBuffer;/* disable ALL the enabled channels */
+  
+  /* Clear interrupt flag */
+   // XGATE.xgswt.word = 0x01fe;    //From PWM for XGATE DRV
+}

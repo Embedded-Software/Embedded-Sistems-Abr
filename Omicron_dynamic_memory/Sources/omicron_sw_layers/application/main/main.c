@@ -42,6 +42,9 @@
 * Code of module wide FUNCTIONS
 ******************************************************************************************************/
 
+extern Pwm_ConfigChannel ConfigPtr0;
+void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr) ;
+
 void vfnBackgroundSubsystemTasks(void);
 
 /*~~~~~~~ Main Code ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -101,3 +104,31 @@ void main(void)
 void vfnBackgroundSubsystemTasks(void) 
 {;}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*
+
+typedef struct pwm_configType 
+{
+  Pwm_ChannelType xChannelType; 
+  UINT8           u8IdleState;
+  Pwm_PeriodType  xPeriodType; 
+  UINT16          u16DutyCycle; 
+}Pwm_ConfigChannel;
+  */
+  
+void interrupt PWM_Handler()
+{
+ // unsigned char temp;
+  //Clear XGATE interrupt flag - SCI0 is channel $6B
+  XGIF1 = 0x0800;
+
+  //Initialise buffer with new values
+  /*ConfigPtr0.xChannelType = 4;
+  temp = ConfigPtr0.character[0];
+  ConfigPtr0.u8IdleState[0] = ConfigPtr0.character[1];
+  ConfigPtr0.xPeriodType[1] = ConfigPtr0.character[2];
+  ConfigPtr0.u16DutyCycle[2] = temp;  */
+  
+  /* Enable the PWM/PIT interrupt to start the start Initialization*/
+ // SCI0CR2_SCTIE = 1;
+}
