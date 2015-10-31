@@ -3,9 +3,9 @@
 /**
 \file       pwm.h
 \brief      pwm signal generation
-\author     Team 3
-\version    1.0
-\date       11/oct/2014
+\author     Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+\version    2.0
+\date       23/oct/20145
 */
 /****************************************************************************************************/
 
@@ -16,7 +16,7 @@
 * Include files
 *****************************************************************************************************/
 /** Variable types used by the pwm driver */
-#include    "pwm_Types.h"   
+#include    "pwm_cfg.h"   
 
 #define MAXNUMBERCHANNELS ((UINT8)0x08)/*this is limited by the hardware and the cpnfiguration on PWMCTL */
 
@@ -33,6 +33,7 @@
 
 #define defaultPeriod     ((UINT16)0xFFFF) /*default value for period*/
 #define defaultDutyCycle  ((UINT16)0x4000) /*default value for duty cycle*/
+
 
 #define PWM_08BIT_HW  (0)
 #define PWM_16BIT_HW  (1)

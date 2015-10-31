@@ -1,10 +1,10 @@
 /****************************************************************************************************/
 /**
 \file       pwm_cfg.h
-\brief      Includes driver internal type declarations.
-\author     Team 3
-\version    1.0
-\date       11/oct/2014
+\brief      Configuration Structures internal driver type declarations.
+\author     Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+\version    2.0
+\date       23/oct/2015
 */
 /****************************************************************************************************/
 
@@ -26,6 +26,12 @@
 #define TYPEB ((UINT8)0x08)
 #define TYPEC ((UINT8)0x03)
 #define TYPED ((UINT8)0x04)
+
+
+#define idleTypeA ((UINT8)0)
+#define idleTypeB ((UINT8)1)
+#define idleTypeC ((UINT8)0)
+#define idleTypeD ((UINT8)1)
 
 #define EIGHT ((UINT8)8u)
 
@@ -60,15 +66,22 @@ typedef struct pwm_configType
 
 typedef struct pwm_configdevice 
 {
-  UINT8                   deviceId;
-  UINT8                   numberChannels;
-  UINT8                   pwmsclB; /*frecuency for channels 2,3,6,7 must be a value between 0x00 and 0xFF*/
-  UINT8                   pwmsclA; /*frecuency for channels 0,1,4,5 must be a value between 0x00 and 0xFF */
+  UINT8                   u6deviceId;
+  UINT8                   u8numberChannels;
+  UINT8                   u8pwmsclB; /*frecuency for channels 2,3,6,7 must be a value between 0x00 and 0xFF*/
+  UINT8                   u8pwmsclA; /*frecuency for channels 0,1,4,5 must be a value between 0x00 and 0xFF */
   const Pwm_ConfigChannel *ptrPwm_ConfigType;
 }Pwm_ConfigDevice;
 
 
-extern const Pwm_ConfigChannel Pwn_config[];
+typedef struct 
+{
+    	UINT8                       u8Number_of_PWM_channels;
+    	const Pwm_ConfigChannel *  ptr_Pwm_ConfigChannel;
+}Pwm_DriverConfig;
 
+extern const Pwm_ConfigChannel Pwm_ChannelConfig[];
+extern const Pwm_DriverConfig Pwm_Config[];
+//extern const Pwm_DriverConfig  Pwm_DriverConfig[]; 
 
 #endif

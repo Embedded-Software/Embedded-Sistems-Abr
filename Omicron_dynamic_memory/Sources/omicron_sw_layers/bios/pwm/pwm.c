@@ -2,10 +2,10 @@
 /****************************************************************************************************/
 /**
 \file       pwm.c
-\brief      contains the driver core functionality.
-\author     Team 3
-\version    1.0
-\date       11/oct/2014
+\brief      Implements duty cylce hs12 core configuration.
+\author     Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+\version    2.1
+\date       23/oct/2015
 */
 /****************************************************************************************************/
 
@@ -122,7 +122,7 @@ void Pwm_SetDutyCycle( Pwm_ChannelType ChannelNumber, UINT16 DutyCycle )
 void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle )
 {
   
-  XGATE_lock_hw_semaphore_1();
+  //XGATE_lock_hw_semaphore_1();
   
   Pwm_ChannelType xTempChannId = astPwmDevices[INTPWM].ptrPwm_ConfigType[ChannelNumber].xChannelType;
   
