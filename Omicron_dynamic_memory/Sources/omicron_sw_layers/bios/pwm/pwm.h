@@ -17,9 +17,23 @@
 *****************************************************************************************************/
 /** Variable types used by the pwm driver */
 #include    "pwm_cfg.h"   
+/** Configuration Options */
+	#include 	"configuration.h"
+/** S12X derivative information */
+	#include 	__MCU_DERIVATIVE
+/** Variable types */
+	#include 	"typedefs.h"
+/** Periodic Interrupt Timer routines prototypes */
+	#include  "pit.h"	
+/** XGATE definitions */
+  #include  "xgate_config.h"	
 
+/*PWM - Initialization */
+#pragma CODE_SEG XGATE_CODE
+	void interrupt vfnPwm_Init_XGATE_Isr(void);
+#pragma CODE_SEG DEFAULT	
+  
 #define MAXNUMBERCHANNELS ((UINT8)0x08)/*this is limited by the hardware and the cpnfiguration on PWMCTL */
-
 #define PWM_CHANNEL_MSK   (MAXNUMBERCHANNELS-1)
 /*types for calculate the preecaler clock A and B of the pwm this values shall be writed in PWMPRCLK register  */
 #define BusClockPeriod    ((UINT8)0x00)
@@ -42,20 +56,18 @@
 #define PWM_AR_HUNDRED      ((UINT32)0x8000)
 #define PWM_NUMERIC_HUNDRED (100u)
 
+#define PWM_SEMAPHORE	0x01
+
 /** Driver function prototypes */
 ///extern void Pwm_Init(void);
 //extern void Pwm_DeInit(void);
+void vfnPWM_Init( void );
+void vfnPWM_Start( void );
 extern void Pwm_SetDutyCycle(Pwm_ChannelType ChannelNumber, UINT16 DutyCycle);
-extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
+//extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
 
-
-    /* Emulated PWM - Initialization */
-#pragma CODE_SEG XGATE_CODE
-	void interrupt vfnPWM_Init_XGATE_Isr(void);
-#pragma CODE_SEG DEFAULT	
-
-/* Cam Crank - Start */
-void vfnPWM_Start ( void );
+/* PWM - Start */
+//void vfnPWM_Start ( void );
 
 #endif
     

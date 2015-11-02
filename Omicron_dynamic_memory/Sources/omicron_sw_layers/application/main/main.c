@@ -81,6 +81,12 @@ void main(void)
      vfnCamCrank_Init();
     /* Start CAM/Crank emulation */
     /* vfnCamCrank_Start();*/
+    
+    /* Initialize CAM/Crank emulation */
+     vfnPwm_Init();
+    /* Start CAM/Crank emulation */
+     vfnPwm_Start();
+    
     //Initialize Serial Communication Driver
     vfnSCI_Init(&SCI_config[0]);
     vfnSCI_WriteBufferTx(SCI_CH0, cadena, 44);

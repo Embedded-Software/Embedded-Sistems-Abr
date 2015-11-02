@@ -20,9 +20,45 @@
 #include "typedefs.h"
 /** frecuency values */
 #include "pll.h"
+/** XGATE definitions */
+#include  "xgate_config.h"
+/** Periodic Interrupt Timer routines prototypes */
+#include "pit.h"	
+
 
 //typedef unsigned   char  UINT8; /*unsigned 8 bit definition */ 
 static UINT8 Pwm__u8EnableBuffer;
+
+/****************************************************************************************************/
+/**
+* \brief    PWM function - Initialization
+* \author   Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+* \param    void
+* \return   UINT8 - operation status
+* \todo     
+*/
+void vfnPWM_Init( void )
+{	
+	/* Command SW trigger 1 to execute --> XGATE to initialize appropriate signal mechanism */
+	XGATE_SW_TRIGGER( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_ENABLE);
+}
+
+/****************************************************************************************************/
+/**
+* \brief    PWM function - Start
+* \author   Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+* \param    void
+* \return   void
+* \todo     
+*/
+void vfnPWM_Start( void )
+{
+    /* Perform Low level PIT start */
+    vfnPIT1_Start();
+
+}
+/****************************************************************************************************/
+
 
 /*****************************************************************************************************/
 /**
@@ -42,28 +78,28 @@ void Pwm_SetDutyCycle( Pwm_ChannelType ChannelNumber, UINT16 DutyCycle )
   volatile UINT32 u32TempDuty=0;
   volatile UINT32 u32Temp;
   
-// XGATE_lock_hw_semaphore_1();
+  //XGATE_lock_hw_semaphore_1();
   
-//#if PWM_HW_TYPE==PWM_16BIT_HW
+  #if PWM_HW_TYPE==PWM_16BIT_HW
   /* 16-bit mode */
   UINT16 * const pvu16BaseDtyReg=(UINT16 * const)&PWMDTY01;
-//#elif PWM_HW_TYPE==PWM_08BIT_HW
+  #elif PWM_HW_TYPE==PWM_08BIT_HW
   /* 8-bit mode */
- // UINT8 * const pvu8BaseDtyReg=(UINT8 * const)&PWMDTY0;
-//#else
+   UINT8 * const pvu8BaseDtyReg=(UINT8 * const)&PWMDTY0;
+  #else
 /* do nothing */
-//#endif
+  #endif
 
-/*  xTempPeriod    = astPwmDevices[INTPWM].ptrPwm_ConfigType[ChannelNumber].xPeriodType;
-  u8PwmType      = astPwmDevices[INTPWM].ptrPwm_ConfigType[ChannelNumber].u8PwmType;
-  xTempChannId   = astPwmDevices[INTPWM].ptrPwm_ConfigType[ChannelNumber].xChannelType;
+  xTempPeriod    = Pwm_Config[INTPWM].ptr_Pwm_ConfigChannel[ChannelNumber].xPeriodType;
+  u8PwmType      = Pwm_Config[INTPWM].ptr_Pwm_ConfigChannel[ChannelNumber].u8PwmType;
+  xTempChannId   = Pwm_Config[INTPWM].ptr_Pwm_ConfigChannel[ChannelNumber].xChannelType;
   u32DesiredDuty = DutyCycle;
-  */
   
- // #if PWM_HW_TYPE==PWM_16BIT_HW
+  
+  #if PWM_HW_TYPE==PWM_16BIT_HW
   /* 16-bit mode */
- // Pwm_CheckChannelId(&xTempChannId);
- // #endif
+   Pwm_CheckChannelId(&xTempChannId);
+  #endif
   u8Temp = ON<<xTempChannId;
   
   u32Temp = (UINT32)(u32DesiredDuty*PWM_NUMERIC_HUNDRED);
@@ -94,24 +130,21 @@ void Pwm_SetDutyCycle( Pwm_ChannelType ChannelNumber, UINT16 DutyCycle )
     u32TempDuty = (UINT16)u32DesiredDuty; 
   }  
   
-//#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+  #if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
   
   /* In 16-bit mode only 4 channels can be selected */
   xTempChannId>>=1; /* Converts "logical" channel into "physical" channel */  
   /* Write PWMDTY<xy> register */
   pvu16BaseDtyReg[xTempChannId]=(UINT16)u32TempDuty;
-//#elif PWM_HW_TYPE==PWM_08BIT_HW /* 8-bit mode */
+  #elif PWM_HW_TYPE==PWM_08BIT_HW /* 8-bit mode */
 
   /* Write PWMDTY<x> register */
-  //pvu8BaseDtyReg[xTempChannId]=(UINT8)u32TempDuty;
+   pvu8BaseDtyReg[xTempChannId]=(UINT8)u32TempDuty;
  
-//#endif
+  #endif
 
 //XGATE_release_hw_semaphore_1();
 }
-
-
-
 /*****************************************************************************************************/
 /**
 * \brief    Set Period an DutyCycle function
@@ -124,29 +157,28 @@ void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period,
   
   //XGATE_lock_hw_semaphore_1();
   
-  Pwm_ChannelType xTempChannId = astPwmDevices[INTPWM].ptrPwm_ConfigType[ChannelNumber].xChannelType;
+  Pwm_ChannelType xTempChannId = Pwm_Config[INTPWM].ptr_Pwm_ConfigChannel[ChannelNumber].xChannelType;
   
-//#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+  #if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
   UINT16 * const pvu16BasePerReg=(UINT16 * const)&PWMPER01;
   Pwm_CheckChannelId(&xTempChannId);
   
   /* In 16-bit mode only 4 channels can be selected */
-  xTempChannId>>=1; /* Converts "logical" channel into "physical" channel */
+   xTempChannId>>=1; /* Converts "logical" channel into "physical" channel */
   /* Write PWMPER<xy> register */
   pvu16BasePerReg[xTempChannId] = Period;
   
-//#elif PWM_HW_TYPE==PWM_08BIT_HW /* 8-bit mode */
- // UINT8 * const pvu8BasePerReg=(UINT8 * const)&PWMPER0;
+  #elif PWM_HW_TYPE==PWM_08BIT_HW /* 8-bit mode */
+   UINT8 * const pvu8BasePerReg=(UINT8 * const)&PWMPER0;
   
   /* Write PWMPER<xy> register */
-//  pvu8BasePerReg[xTempChannId] = Period;
-//#endif  
+  pvu8BasePerReg[xTempChannId] = Period;
+  #endif  
   Pwm_SetDutyCycle(ChannelNumber,DutyCycle);
 }
 
+#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
 
-
-//#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
 /*****************************************************************************************************/
 /**
 * \brief    If channel 0, 2, 4 or 6 is selected it's changed to 1, 3, 5 or 7 since in 16-bit mode
@@ -167,9 +199,12 @@ void Pwm_CheckChannelId(Pwm_ChannelType * ChannelNumber)
   
  // XGATE_release_hw_semaphore_1();
 }
-//#endif
+#endif
+
+
 
 /** Driver function prototypes */
 extern void Pwm_SetDutyCycle(Pwm_ChannelType ChannelNumber,UINT16 DutyCycle);
 extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
 extern void Pwm_CheckChannelId(Pwm_ChannelType * ChannelNumber);
+//extern  void interrupt vfnPwm_Init_XGATE_Isr(void);

@@ -1,0 +1,5 @@
+L1818: Symbol 20 - u16PITTimeOut duplicated in xgate_pwm.cxgate.o and cam_crank.cxgate.o
+L1818: Symbol 21 - Pwm_ChannelConfig duplicated in xgate_pwm.cxgate.o and pwm_cfg.c.o
+L1827: Symbol Pwm_Config has different size in xgate_pwm.cxgate.o (4 bytes) and pwm_cfg.c.o (3 bytes)
+L1818: Symbol 22 - Pwm_Config duplicated in xgate_pwm.cxgate.o and pwm_cfg.c.o
+L1301: Cannot open file Z:\Development\Embedded-Sistems-Abr\Omicron_dynamic_memory\Omicron_ASW_Data\SofTec_HCS12\ObjectCode\xgate_pwm.cxgate.o

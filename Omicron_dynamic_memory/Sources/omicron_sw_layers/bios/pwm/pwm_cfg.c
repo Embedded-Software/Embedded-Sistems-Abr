@@ -2,6 +2,8 @@
 #include    "pwm_cfg.h"
 #include    "pwm.h"
 #include    "typedefs.h"
+/** XGATE definitions */
+#include  "xgate_config.h"
 
 /******************************************************************************
 PWM Configuration Channel Structure
@@ -16,31 +18,17 @@ the PWM period and duty cycle, and the starting position
 * \return   void
 *******************************************************************************/
 
-//const Pwm_ConfigChannel astPwmChannels[]= 
-const Pwm_ConfigChannel Pwm_ChannelConfig[] =
-{ 
-/* Pwm_ChannelType  pwmType       idle_State        Pwm_PeriodType     dutyCycle (0x0000...0x8000) */
-/*                                                                                0%        100%*/
-  { CHANNELPWM7,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0x7F),           0x1000/*12.5%*/       },
-  { CHANNELPWM5,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0x7F),           0x4000/*50%*/         },
-  { CHANNELPWM3,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0x7F),           0x2000/*25%*/         },  
-  { CHANNELPWM1,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0x7F),           0x6000/*75%*/         },
-  { CHANNELPWM2,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0xFF),           0x1000/*12.5%*/       },
-  { CHANNELPWM4,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0xFF),           0x4000/*50%*/         },
-  { CHANNELPWM6,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0xFF),           0x2000/*25%*/         },  
-  { CHANNELPWM0,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0xFF),           0x6000/*75%*/         },
-};
 
 //const Pwm_ConfigDevice astPwmDevices[]=
-const Pwm_DriverConfig  Pwm_Config[] =
-{ 
+//const Pwm_DriverConfig  Pwm_Config[] =
+//{ 
     
  {   // INTPWM,                                                       // deviceId
-       // PWM_SIZE(astPwmChannels,Pwm_ConfigChannel),                   // numberChannels 
-       PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel),
-       //sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]), 
+        //PWM_SIZE(astPwmChannels,Pwm_ConfigChannel),                   // numberChannels 
+       //PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel),
+/////       sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]), 
        //0x01,                                                        // pwmsclB 
        //0x01,                                                        // pwmsclA
-       &Pwm_ChannelConfig[0]                                           // ptrPwm_ConfigType   
- }
-};
+  /////     &Pwm_ChannelConfig[0]                                           // ptrPwm_ConfigType   
+ //}
+//};

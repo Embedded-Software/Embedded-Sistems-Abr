@@ -90,9 +90,4 @@ void XGATE_SW_TRIGGER(UINT8 u8TriggerNumber, UINT8 u8TriggerMask);
 *****************************************************************************************************/
 
 
-
-
-
-
-
 #endif /* __XGATE_CONFIG_H */

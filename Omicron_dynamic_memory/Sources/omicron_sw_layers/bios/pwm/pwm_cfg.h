@@ -80,6 +80,8 @@ typedef struct
     	const Pwm_ConfigChannel *  ptr_Pwm_ConfigChannel;
 }Pwm_DriverConfig;
 
+
+
 extern const Pwm_ConfigChannel Pwm_ChannelConfig[];
 extern const Pwm_DriverConfig Pwm_Config[];
 //extern const Pwm_DriverConfig  Pwm_DriverConfig[]; 

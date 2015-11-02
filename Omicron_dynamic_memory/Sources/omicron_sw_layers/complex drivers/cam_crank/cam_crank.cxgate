@@ -240,13 +240,13 @@ Returns     : None
 Notes     : Cam Crank implementation. Initialization of Callback function 
           to be called by appropriate ISR
 ******************************************************************************/
-#pragma CODE_SEG XGATE_CODE
-  void interrupt vfnCamCrank_Init_XGATE_Isr(void) 
-  {                                 
+//#pragma CODE_SEG XGATE_CODE
+  //void interrupt vfnCamCrank_Init_XGATE_Isr(void) 
+  //{                                 
     /* Periodic Interrupt Timer Low Level Initialization */
-      vfnPIT1_Init(&vfnCamCrank_Callback, __XGATE_CORE);
+      //vfnPIT1_Init(&vfnCamCrank_Callback, __XGATE_CORE);
     /* Clear Software Interrupt request flag */
-      XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
-  }
-#pragma CODE_SEG DEFAULT
+     // XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
+  //}
+//#pragma CODE_SEG DEFAULT
 

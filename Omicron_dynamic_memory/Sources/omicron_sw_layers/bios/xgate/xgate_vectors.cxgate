@@ -28,11 +28,16 @@
 *****************************************************************************************************/
 	
 //void interrupt vfnPIT_Channel1_Isr(void); 
-
 //void interrupt vfnCamCrank_Init_XGATE_Isr(void);
  
-void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr);
+//void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr);
 void interrupt Pwm_DeInit_Thread(void);
+
+void interrupt vfnPIT_Channel1_Isr(void); 
+
+//void interrupt vfnPwm_Init_XGATE_Isr(void);
+void interrupt vfnPwm_Init_XGATE_Isr(void);
+ 
  
 /*****************************************************************************************************
 * Definition of module wide MACROs / #DEFINE-CONSTANTs 
@@ -116,13 +121,14 @@ const XGATE_TableEntry XGATE_VectorTable[] =
 		  {ErrorHandler, 0x36},  // Channel 36 - XGATE Software Trigger 3           
 		  {ErrorHandler, 0x37},  // Channel 37 - XGATE Software Trigger 2           
 		  {ErrorHandler, 0x38},  // Channel 38 - XGATE Software Trigger 1           
-		  //{(XGATE_Function)vfnCamCrank_Init_XGATE_Isr, 0x39},  // Channel 39 - XGATE Software Trigger 0                  
-		  {(XGATE_Function)Pwm_Init_Thread, (UINT8) &ConfigPtr0},  // Channel 39 - XGATE Software Trigger 0       
+		  //{(XGATE_Function)vfnCamCrank_Init_XGATE_Isr, 0x39},  // Channel 39 - XGATE Software Trigger 0 
+		  {(XGATE_Function)vfnPwm_Init_XGATE_Isr, 0x39},  // Channel 39 - XGATE Software Trigger 0                     
+		  //{(XGATE_Function)Pwm_Init_Thread, (UINT8) &ConfigPtr0},  // Channel 39 - XGATE Software Trigger 0       
 		  // {(XGATE_Function)SCI_Thread, (int) &Buffer0},  // Channel 6B - SCI0       
 		  {ErrorHandler, 0x3A},  // Channel 3A - Periodic Interrupt Timer ch3          
 		  {ErrorHandler, 0x3B},  // Channel 3B - Periodic Interrupt Timer ch2          
-		  //{(XGATE_Function)vfnPIT_Channel1_Isr, 0x3C},  // Channel 3C - Periodic Interrupt Timer ch1 
-		  {(XGATE_Function)Pwm_DeInit_Thread, 0x3C},  // Channel 3C - Periodic Interrupt Timer ch1 
+		  {(XGATE_Function)vfnPIT_Channel1_Isr, 0x3C},  // Channel 3C - Periodic Interrupt Timer ch1 
+		  //{(XGATE_Function)Pwm_DeInit_Thread, 0x3C},  // Channel 3C - Periodic Interrupt Timer ch1 
 		  
 		  {ErrorHandler, 0x3D},  // Channel 3D - Periodic Interrupt Timer ch0               
 		  {ErrorHandler, 0x3E},  // Channel 3E - Reserved                            
