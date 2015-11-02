@@ -78,7 +78,7 @@ void main(void)
     /* Once all initializations are complete, enable interrupts */
     INTERRUPT_ENABLE();     
     /* Initialize CAM/Crank emulation */
-    /* vfnCamCrank_Init();*/
+     vfnCamCrank_Init();
     /* Start CAM/Crank emulation */
     /* vfnCamCrank_Start();*/
     //Initialize Serial Communication Driver

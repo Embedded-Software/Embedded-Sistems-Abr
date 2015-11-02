@@ -65,10 +65,10 @@ UINT8 u8CamConfig[]=
 #pragma DATA_SEG DEFAULT
 
 /******************************************************************************
-PWM initialisation
+
 Array cam_crank_channels consists of record of structure type tCamCrankChDescr
-For each required PWM channel, identify the relevant port address and pin,
-the PWM period and duty cycle, and the starting position
+For each required camCrank channel, identify the relevant port address and pin,
+the camCrank period and duty cycle, and the starting position
 
 ******************************************************************************/
 

@@ -13,10 +13,65 @@ Notes            :
 #pragma CODE_SEG XGATE_CODE
 #pragma DATA_SEG XGATE_DATA
 
+/******************************************************************************
+PWM initialization
+Array cam_crank_channels consists of record of structure type tCamCrankChDescr
+For each required PWM channel, identify the relevant port address and pin,
+the PWM period and duty cycle, and the starting position
 
+******************************************************************************/
+
+#pragma DATA_SEG SHARED_DATA 
+
+//tCamCrankChDescr cam_crank_channels []=
+//{/*          *u8Port            *u8ConfigProfile      u16PITCounter u8SignalType  u8ArrayIndex  u8BitMask   u8DirConfig     u8Directionu    8ProfileSize */
+/*   { (UINT8 *)(&PORTA), &(u8CrankConfig[0]),  0u,           CRANK_SIGNAL, 0u,           0x01,       BIDIRECTIONAL,  FORWARD,        sizeof(u8CrankConfig)/sizeof(UINT8) },
+   { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   0u,           0x02,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },  
+   { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   15u,          0x04,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },
+   { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   0u,           0x08,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   },
+   { (UINT8 *)(&PORTA), &(u8CamConfig[0]),    0u,           CAM_SIGNAL,   15u,          0x10,       NONE,           NONE,           sizeof(u8CamConfig)/sizeof(UINT8)   }
+};*/
+
+
+const Pwm_ConfigChannel astPwmChannels[]= 
+//const Pwm_ConfigChannel Pwm_ChannelConfig[] =
+{ 
+/* Pwm_ChannelType  pwmType       idle_State        Pwm_PeriodType     dutyCycle (0x0000...0x8000) */
+/*                                                                                0%        100%*/
+  { CHANNELPWM7,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0x7F),           0x1000/*12.5%*/       },
+  { CHANNELPWM5,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0x7F),           0x4000/*50%*/         },
+  { CHANNELPWM3,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0x7F),           0x2000/*25%*/         },  
+  { CHANNELPWM1,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0x7F),           0x6000/*75%*/         },
+  { CHANNELPWM2,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0xFF),           0x1000/*12.5%*/       },
+  { CHANNELPWM4,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0xFF),           0x4000/*50%*/         },
+  { CHANNELPWM6,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0xFF),           0x2000/*25%*/         },  
+  { CHANNELPWM0,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0xFF),           0x6000/*75%*/         },
+};
+#pragma DATA_SEG DEFAULT
 
  /* Buffer to hold individual enable flags for each PWM channel */       
-static UINT8 Pwm__u8EnableBuffer;                
+static UINT8 Pwm__u8EnableBuffer;      
+
+
+/******************************************************************************
+Function Name : vfnPWM_Init_XGATE
+author   Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
+Parameters    : None
+Returns     : None
+Notes     : PWM implementation. Initialization of Callback function 
+          to be called by appropriate ISR
+******************************************************************************/
+#pragma CODE_SEG XGATE_CODE
+  void interrupt vfnPWM_Init_XGATE_Isr(void) 
+  {                                 
+    /* Periodic Interrupt Timer Low Level Initialization */
+      vfnPIT1_Init(&vfnPWM_Callback, __XGATE_CORE);
+    /* Clear Software Interrupt request flag */
+      XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
+  }
+#pragma CODE_SEG DEFAULT
+
+          
 
 /*****************************************************************************************************/
 /**

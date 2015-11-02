@@ -47,6 +47,16 @@
 //extern void Pwm_DeInit(void);
 extern void Pwm_SetDutyCycle(Pwm_ChannelType ChannelNumber, UINT16 DutyCycle);
 extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
+
+
+    /* Emulated PWM - Initialization */
+#pragma CODE_SEG XGATE_CODE
+	void interrupt vfnPWM_Init_XGATE_Isr(void);
+#pragma CODE_SEG DEFAULT	
+
+/* Cam Crank - Start */
+void vfnPWM_Start ( void );
+
 #endif
     
   
