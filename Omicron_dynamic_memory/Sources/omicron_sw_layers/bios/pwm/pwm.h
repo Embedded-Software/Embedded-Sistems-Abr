@@ -28,10 +28,6 @@
 /** XGATE definitions */
   #include  "xgate_config.h"	
 
-/*PWM - Initialization */
-#pragma CODE_SEG XGATE_CODE
-	void interrupt vfnPwm_Init_XGATE_Isr(void);
-#pragma CODE_SEG DEFAULT	
   
 #define MAXNUMBERCHANNELS ((UINT8)0x08)/*this is limited by the hardware and the cpnfiguration on PWMCTL */
 #define PWM_CHANNEL_MSK   (MAXNUMBERCHANNELS-1)
@@ -51,7 +47,7 @@
 
 #define PWM_08BIT_HW  (0)
 #define PWM_16BIT_HW  (1)
-#define PWM_SIZE(x,y)   (sizeof(x)/sizeof(y))
+#define PWM_SIZE(x,y)   (sizeof(sx)/sizeof(y))
 
 #define PWM_AR_HUNDRED      ((UINT32)0x8000)
 #define PWM_NUMERIC_HUNDRED (100u)
@@ -61,13 +57,16 @@
 /** Driver function prototypes */
 ///extern void Pwm_Init(void);
 //extern void Pwm_DeInit(void);
-void vfnPWM_Init( void );
-void vfnPWM_Start( void );
+extern void vfnPwm_Init( void );
+extern void vfnPwm_Start( void );
 extern void Pwm_SetDutyCycle(Pwm_ChannelType ChannelNumber, UINT16 DutyCycle);
-//extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
+extern void Pwm_SetPeriodAndDuty( Pwm_ChannelType ChannelNumber, Pwm_PeriodType Period, UINT16 DutyCycle );
+extern void Pwm_CheckChannelId(Pwm_ChannelType * ChannelNumber);
 
-/* PWM - Start */
-//void vfnPWM_Start ( void );
+/*PWM - Initialization */
+#pragma CODE_SEG XGATE_CODE
+	void interrupt vfnPwm_Init_XGATE_Isr(void);
+#pragma CODE_SEG DEFAULT	
 
 #endif
     

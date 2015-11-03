@@ -43,7 +43,7 @@
 ******************************************************************************************************/
 
 extern Pwm_ConfigChannel ConfigPtr0;
-void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr) ;
+//void interrupt Pwm_Init_Thread(Pwm_ConfigChannel* ConfigPtr) ;
 
 void vfnBackgroundSubsystemTasks(void);
 
@@ -82,9 +82,9 @@ void main(void)
     /* Start CAM/Crank emulation */
     /* vfnCamCrank_Start();*/
     
-    /* Initialize CAM/Crank emulation */
+    /* Initialize PWM */
      vfnPwm_Init();
-    /* Start CAM/Crank emulation */
+    /* Start PWM */
      vfnPwm_Start();
     
     //Initialize Serial Communication Driver

@@ -9,6 +9,7 @@ Notes            :
 #include "xgate_config.h"
 #include "typedefs.h"
 #include "pwm.h"
+#include "pwm_cfg.h"
 
 #pragma CODE_SEG XGATE_CODE
 #pragma DATA_SEG XGATE_DATA
@@ -30,34 +31,27 @@ the PWM period and duty cycle, and the starting position
 
 
 const Pwm_ConfigChannel Pwm_ChannelConfig[] =
-//const Pwm_ConfigChannel astPwmChannels[]= 
-{ 
-/* Pwm_ChannelType  pwmType       idle_State        Pwm_PeriodType     dutyCycle (0x0000...0x8000) */
-/*                                                                                0%        100%*/
-  { CHANNELPWM7,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0x7F),           0x1000/*12.5%*/       },
-  { CHANNELPWM5,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0x7F),           0x4000/*50%*/         },
-  { CHANNELPWM3,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0x7F),           0x2000/*25%*/         },  
-  { CHANNELPWM1,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0x7F),           0x6000/*75%*/         },
-  { CHANNELPWM2,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0xFF),           0x1000/*12.5%*/       },
-  { CHANNELPWM4,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0xFF),           0x4000/*50%*/         },
-  { CHANNELPWM6,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0xFF),           0x2000/*25%*/         },  
-  { CHANNELPWM0,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0xFF),           0x6000/*75%*/         },
+{                                                                         
+  { CHANNELPWM7,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0x7F),           0x1000        },
+  { CHANNELPWM5,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0x7F),           0x4000        },
+  { CHANNELPWM3,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0x7F),           0x2000        },  
+  { CHANNELPWM1,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0x7F),           0x6000        },
+  { CHANNELPWM2,     TYPED,       idleTypeD,        ((Pwm_PeriodType)0xFF),           0x1000        },
+  { CHANNELPWM4,     TYPEB,       idleTypeB,        ((Pwm_PeriodType)0xFF),           0x4000        },
+  { CHANNELPWM6,     TYPEC,       idleTypeC,        ((Pwm_PeriodType)0xFF),           0x2000        },  
+  { CHANNELPWM0,     TYPEA,       idleTypeA,        ((Pwm_PeriodType)0xFF),           0x6000        },
 };
 
 const Pwm_DriverConfig  Pwm_Config[] =
 { 
     
- {   // INTPWM,                                                       // deviceId
-        //PWM_SIZE(astPwmChannels,Pwm_ConfigChannel),                   // numberChannels 
-       //PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel),
-       sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]), 
-       //0x01,                                                        // pwmsclB 
-       //0x01,                                                        // pwmsclA
-       &Pwm_ChannelConfig[0]                                           // ptrPwm_ConfigType   
+ {   
+       sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]),     
+       &Pwm_ChannelConfig[0]                                          
  }
 };
 
-#pragma DATA_SEG DEFAULT
+#pragma DATA_SEG DEFAULT  
 
  /* Buffer to hold individual enable flags for each PWM channel */       
 static UINT8 Pwm__u8EnableBuffer;                
@@ -73,7 +67,8 @@ static UINT8 Pwm__u8EnableBuffer;
 /*****************************************************************************************************/
 
 /******************************************************************************
-Function Name   : vfnCamCrank_Callback
+Function Name   : vfnCPWM_Callback
+author   Andres Sanchez, Cesar Gomez, Juan Carlos Morales, Pablo Camacho
 Parameters      : None
 Returns         : None
 Notes     		: Cam Crank algorithm implementation. Callback function to be called 
@@ -85,8 +80,8 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
 //void interrupt Pwm_Init_Isr(const Pwm_ConfigChannel* ConfigPtr)
   void vfnPwm_Callback(void) 
   {                                 
-    	UINT16 u16Delay;
-    	UINT8  u8Channel;
+    //	UINT16 u16Delay;
+   // 	UINT8  u8Channel;
     	
     Pwm_ChannelType xTempChannId;
     Pwm_PeriodType  xTempPeriod;
@@ -97,53 +92,54 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
     volatile UINT32 u32DesiredDuty=0;
 
     	
- while (!_ssem(PWM_SEMAPHORE)) { }
+    while (!_ssem(PWM_SEMAPHORE)) { }
 
-      if (u16PITPWMTimeOut != 0xFFFF)
-      {
-        	 		
-        	 		
+     if (u16PITPWMTimeOut != 0xFFFF)
+     {
+        	 		        	 		
       PWMCAE=0x00; /*Left aligned mode to all channels on this device */
       
-      //#if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+      #if PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
       PWMCLK=0xAA; /*selecting  the clock SA and SB source for concatenated channels */ 
       PWMCTL=0xF0; /*it will use the concatenation of (0,1) (2,3) (4,5) (6,7) registers  */
-      //#elif PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
-      //PWMCLK=0xFF; /*selecting  the clock SA and SB source for all channels */ 
-      //#endif   
+      #elif PWM_HW_TYPE==PWM_16BIT_HW /* 16-bit mode */
+      PWMCLK=0xFF; /*selecting  the clock SA and SB source for all channels */ 
+      #endif   
       
       Pwm__u8EnableBuffer = 0;
       
       /* the pwm output will be in the low order 8bit channel pin PWME7 in the case of 6 and 7 concatenation*/
       /* the pwm polarity will be controlled by by the PPOLx bit of the corresponding low order 8-bit channel, in the case of 6 and 7 concatenation will be PPOL7 */
       /* init all devices, in this case the s12exp100 only has one */
-      for(u8DeviceIndex=0; u8DeviceIndex < PWM_SIZE(Pwm_Config,Pwm_ConfigDevice); u8DeviceIndex++) 
-      {    
+      for(u8DeviceIndex=0; u8DeviceIndex < sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]); u8DeviceIndex++) 
+      //for(u8DeviceIndex=0; u8DeviceIndex < PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel); u8DeviceIndex++) 
+      {                                                //PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel)
         PWMPRCLK=BusClockPeriod;
         PWMSCLA=0x01;/*Pwm_Config[u8DeviceIndex].pwmsclA;*/ /*selecting the scaler value A*/
         PWMSCLB=0x01;/*Pwm_Config[u8DeviceIndex].pwmsclB;*/ /*selecting the scaler value B*/
         u8Temp=0;
         /* Initialize all channels for each device */
-        for(u8ChannelIndex=0; u8ChannelIndex < PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel);u8ChannelIndex++)  
+        for(u8ChannelIndex=0; u8ChannelIndex <  sizeof(Pwm_ChannelConfig)/sizeof(Pwm_ChannelConfig[0]); u8DeviceIndex++) 
+                                                      //PWM_SIZE(Pwm_ChannelConfig,Pwm_ConfigChannel);u8ChannelIndex++)  
         {
         xTempPeriod     = Pwm_Config[u8DeviceIndex].ptr_Pwm_ConfigChannel[u8ChannelIndex].xPeriodType;
         xTempChannId    = Pwm_Config[u8DeviceIndex].ptr_Pwm_ConfigChannel[u8ChannelIndex].xChannelType;
         u16DesiredDuty  = Pwm_Config[u8DeviceIndex].ptr_Pwm_ConfigChannel[u8ChannelIndex].u16DutyCycle;
         
-        //#if PWM_HW_TYPE==PWM_16BIT_HW
+        #if PWM_HW_TYPE==PWM_16BIT_HW
         /* 16-bit mode */
         Pwm_CheckChannelId(&xTempChannId);
-        //#endif
+        #endif
         
         u8Temp = ON<<xTempChannId;
         Pwm__u8EnableBuffer |= u8Temp;/* Prepare the Enabling of the corresponding channel */
         
         Pwm_SetPeriodAndDuty(u8ChannelIndex,xTempPeriod,u16DesiredDuty);
-    }/* CHANNEL for */
+        }/* CHANNEL for */
     
-    PWME |= Pwm__u8EnableBuffer; /* Enable ALL CONFIGURED channels at the same time */
-  }/* DEVICE for */    	 		   	    	    	    	
- }  
+        PWME |= Pwm__u8EnableBuffer; /* Enable ALL CONFIGURED channels at the same time */
+      }/* DEVICE for */    	 		   	    	    	    	
+    }    
   /* Clear interrupt flag */
    // XGATE.xgswt.word = 0x01fe;       //From PWM for XGATE DRV
    
@@ -170,8 +166,6 @@ void interrupt Pwm_DeInit_Thread(void)
   /* Clear interrupt flag */
    // XGATE.xgswt.word = 0x01fe;    //From PWM for XGATE DRV
 }
-
-
 
 /******************************************************************************
 Function Name : vfnPWM_Init_XGATE

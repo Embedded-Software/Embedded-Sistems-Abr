@@ -22,6 +22,10 @@
 #define Pwm_ChannelType UINT8
 #define Pwm_PeriodType  UINT8
 
+//#define PWM_HW_TYPE PWM_08BIT_HW
+#define PWM_HW_TYPE PWM_16BIT_HW
+
+
 #define TYPEA ((UINT8)0x01)
 #define TYPEB ((UINT8)0x08)
 #define TYPEC ((UINT8)0x03)

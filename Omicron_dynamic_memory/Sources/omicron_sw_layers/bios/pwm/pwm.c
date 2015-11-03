@@ -37,7 +37,7 @@ static UINT8 Pwm__u8EnableBuffer;
 * \return   UINT8 - operation status
 * \todo     
 */
-void vfnPWM_Init( void )
+void vfnPwm_Init( void )
 {	
 	/* Command SW trigger 1 to execute --> XGATE to initialize appropriate signal mechanism */
 	XGATE_SW_TRIGGER( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_ENABLE);
@@ -51,7 +51,7 @@ void vfnPWM_Init( void )
 * \return   void
 * \todo     
 */
-void vfnPWM_Start( void )
+void vfnPwm_Start( void )
 {
     /* Perform Low level PIT start */
     vfnPIT1_Start();
