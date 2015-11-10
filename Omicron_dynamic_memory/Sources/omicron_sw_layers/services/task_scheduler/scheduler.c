@@ -17,9 +17,18 @@
 /** Interrupt funtcion prototypes definitions */
 #include    "interrupt.h"
 
+#include    "pwm.h"
+
+
 /*****************************************************************************************************
 * Definition of  VARIABLEs - 
 *****************************************************************************************************/
+
+#define PWM_SEMAPHORE	0x02
+
+#define SET_SEM(x)  (XGSEM = 0x0101 << (x))
+#define TST_SEM(x)  (XGSEM & 0x0001 << (x))
+#define REL_SEM(x)  (XGSEM = 0x0100 << (x))
 
 UINT8 gu8Scheduler_Status;
 UINT8 gu8Scheduler_Counter;
@@ -138,7 +147,6 @@ void vfnScheduler_TaskRestart( tSchedulingTask * Task )
     TaskScheduler_Task_ID_Running =  Task->TaskId;
     ptrTaskScheduler_Task_Running =  Task;
 }
-
 
 /*****************************************************************************************************
 * Code of public FUNCTIONS
@@ -504,3 +512,47 @@ void vfnScheduler_Callback( void  )
     }
 }
 /***************************************************************************************************/
+
+
+
+/** Function for variation of Duty Cycle in the PWM  **/
+/** The Duty Cycle value is sent from HCS12X core to **/
+/** XGATE core every 50 ms                           **/
+
+void vfnDutyCycle_Variator(void)
+{
+
+   static UINT8 Flag_Up_Down = 1;
+
+   while (!TST_SEM (PWM_SEMAPHORE)) {SET_SEM (PWM_SEMAPHORE);}
+
+   
+      if (Flag_Up_Down == 1)
+         {        
+          if(PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO <= 100)
+            {
+              PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO += 5;         
+            }
+         
+          if(PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO == 100)
+            {
+              Flag_Up_Down = 0;         
+            }
+         } 
+       else if (Flag_Up_Down == 0) 
+       {
+          if(PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO >= 0)
+            {
+              PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO -= 5;         
+            }
+         
+          if(PWMmultchannel_confarray[PWM_CH0].CICLO_TRABAJO == 0)
+            {
+              Flag_Up_Down = 1;         
+            }       
+       }             
+         
+   REL_SEM(PWM_SEMAPHORE);
+         
+   LED_TOGGLE(D2);
+}

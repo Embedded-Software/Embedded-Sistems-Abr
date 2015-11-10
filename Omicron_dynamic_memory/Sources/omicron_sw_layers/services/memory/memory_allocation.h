@@ -66,10 +66,6 @@ typedef struct
 #define MEM_ALLOC_2_BYTE_ALIGN  0xFFFE
 #define MEM_ALLOC_4_BYTE_ALIGN  0xFFFC
 
-#define MEM_ALLOC_1_BYTE_ALIGN_FAR  0xFFFFFF
-#define MEM_ALLOC_2_BYTE_ALIGN_FAR  0xFFFFFE
-#define MEM_ALLOC_4_BYTE_ALIGN_FAR  0xFFFFFC
-
 /*****************************************************************************************************
 * Declaration of module wide VARIABLEs
 *****************************************************************************************************/

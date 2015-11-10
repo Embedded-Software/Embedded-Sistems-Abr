@@ -36,7 +36,6 @@ tMemAlloc_status    MemAlloc_Status;
 tPagedRAMpages_status PagedRamPagesFar_status[MEM_ALLOC_MAX_FAR_RAM_PAGES] = 
 {
     {RAM_NULL, (tu8ptr_far)NULL,(tu8ptr_far)NULL, 0},
-    {RAM_NULL, (tu8ptr_far)NULL,(tu8ptr_far)NULL, 0},
     {RAM_NULL, (tu8ptr_far)NULL,(tu8ptr_far)NULL, 0}
 };
 /*****************************************************************************************************
@@ -212,7 +211,7 @@ tu8ptr_far MemAlloc_Reserve( UINT16  u16SizeinBytes)
         farStartAddress = MemAlloc_Status.RamPageStatus[u8pageIndex].ptr_CurrentAddress;
         farEndAddress = MemAlloc_Status.RamPageStatus[u8pageIndex].ptr_EndAddress;
         /* Apply alginment */
-        farStartAddress = (tu8ptr_far)(((UINT32)(farStartAddress)+3) & (UINT32)MEM_ALLOC_4_BYTE_ALIGN_FAR);
+        farStartAddress = (tu8ptr_far)(((UINT32)(farStartAddress)+3) & (UINT32)MEM_ALLOC_4_BYTE_ALIGN);
         /* Verify if enough memory is free */
         if( (UINT16)(farEndAddress - farStartAddress + 1) >= u16SizeinBytes )
         {

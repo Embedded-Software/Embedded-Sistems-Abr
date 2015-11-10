@@ -58,6 +58,7 @@ void TASKS_LIST_10MS( )
 /* List of tasks to be executed @ 50ms */
 void TASKS_LIST_50MS( void )
 {
+    vfnDutyCycle_Variator();
     vfnSchedulepoint();
 }
 /* List of tasks to be executed @ 100ms */
@@ -66,3 +67,5 @@ void TASKS_LIST_100MS( void )
     /* vfnCOM_SendRPM();*/
     vfnSchedulepoint();
 }
+
+

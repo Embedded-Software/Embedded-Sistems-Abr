@@ -21,7 +21,6 @@
 /** Core modules */
 /** Configuration Options */
   #include "configuration.h"
-  #include "pwm_cfg.h"
 /** MCU derivative information */
   #include __MCU_DERIVATIVE
 /** Variable types and common definitions */
@@ -49,23 +48,6 @@ typedef struct {
   	/* Pointer to the data of the handler */
   	int dataptr;              
 } XGATE_TableEntry;
-
-/*typedef struct
-{					
-  unsigned char size;
-  unsigned char character[8];  
-} tBuffer;
-*/
-     /*
-typedef struct pwm_configType 
-{
-  Pwm_ChannelType xChannelType; 
-  UINT8           u8PwmType;
-  UINT8           u8IdleState; 
-  Pwm_PeriodType  xPeriodType; 
-  UINT16          u16DutyCycle; 
-}Pwm_ConfigChannel;      */
-
 
 /*****************************************************************************************************
 * Definition of module wide MACROS / #DEFINE-CONSTANTS 

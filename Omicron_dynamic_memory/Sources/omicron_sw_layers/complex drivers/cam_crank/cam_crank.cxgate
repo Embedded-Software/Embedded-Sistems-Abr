@@ -65,10 +65,10 @@ UINT8 u8CamConfig[]=
 #pragma DATA_SEG DEFAULT
 
 /******************************************************************************
-
+PWM initialisation
 Array cam_crank_channels consists of record of structure type tCamCrankChDescr
-For each required camCrank channel, identify the relevant port address and pin,
-the camCrank period and duty cycle, and the starting position
+For each required PWM channel, identify the relevant port address and pin,
+the PWM period and duty cycle, and the starting position
 
 ******************************************************************************/
 
@@ -127,9 +127,9 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
           		  by appropriate ISR
 ******************************************************************************/
 #pragma CODE_SEG XGATE_CODE
-  void vfnCamCrank_Callback(void) 
-  {                                 
-    	UINT16 u16Delay;
+  void vfnCamCrank_Callback(void)  
+  {
+      UINT16 u16Delay;
     	UINT8  u8Channel;
     	
       while (!_ssem(CAM_CRANK_SEMAPHORE)) { }
@@ -139,7 +139,7 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
         	for( u8Channel = 0; u8Channel <= ( CAM_CRANK_Control.u8ConfigSize - 1 ); u8Channel++ )
         	{
             	/* Load new PWM configuration */
-          		ptCamCrankChDescr_ptr = &cam_crank_channels[ u8Channel ];
+         		ptCamCrankChDescr_ptr = &cam_crank_channels[ u8Channel ];
 
             	u16Delay = 0;
 
@@ -150,11 +150,11 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
                   {/* BIDIRECTIONAL Configuration */
                 	    if( ptCamCrankChDescr_ptr->u8Direction == REVERSE )
                 	    {/* REVERSE delay */
-                  	      u16Delay = REVERSE_DELAY_IN_PIT_COUNTS; 
+                	      u16Delay = REVERSE_DELAY_IN_PIT_COUNTS; 
                 	    }
                 	    else
                 	    {/* FORWARD delay */
-                  	      u16Delay = FORWARD_DELAY_IN_PIT_COUNTS;      	      
+                 	      u16Delay = FORWARD_DELAY_IN_PIT_COUNTS;      	      
                 	    }
                   }
                   else
@@ -198,7 +198,7 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
               ptCamCrankChDescr_ptr->u16PITCounter++; 
           		
           		/* Check if time-out for an PIT event has been reached */
-          		if( ptCamCrankChDescr_ptr->u16PITCounter < u16PITTimeOut )
+        		if( ptCamCrankChDescr_ptr->u16PITCounter < u16PITTimeOut )
           		{;}
           		else
           		{                                          
@@ -228,9 +228,10 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
         	}  	    	  	   		
      }
      /* Release the hardware semaphore */   
-     _csem(CAM_CRANK_SEMAPHORE);
-    	    	    	    	
+    _csem(CAM_CRANK_SEMAPHORE);
+	
   }
+   
 #pragma CODE_SEG DEFAULT
 
 /******************************************************************************
@@ -240,13 +241,13 @@ Returns     : None
 Notes     : Cam Crank implementation. Initialization of Callback function 
           to be called by appropriate ISR
 ******************************************************************************/
-//#pragma CODE_SEG XGATE_CODE
-  //void interrupt vfnCamCrank_Init_XGATE_Isr(void) 
-  //{                                 
+#pragma CODE_SEG XGATE_CODE
+  void interrupt vfnCamCrank_Init_XGATE_Isr(void) 
+  {                                 
     /* Periodic Interrupt Timer Low Level Initialization */
-      //vfnPIT1_Init(&vfnCamCrank_Callback, __XGATE_CORE);
+      vfnPIT1_Init(&vfnCamCrank_Callback, __XGATE_CORE);
     /* Clear Software Interrupt request flag */
-     // XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
-  //}
-//#pragma CODE_SEG DEFAULT
+      XGATE_SW_TRIGGER_X( SOFTWARE_TRIGGER_1, SOFTWARE_TRIGGER_DISABLE);
+  }
+#pragma CODE_SEG DEFAULT
 

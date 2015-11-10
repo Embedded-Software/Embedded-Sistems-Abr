@@ -62,25 +62,10 @@
 	#endif
 
 
-/** Serial Communication channels definition/creation */
-	#define SERIAL_COMM_CHANNEL0
-	/* Other options : */
-	/* #define SERIAL_COMM_CHANNEL1     */
-
-	#ifdef SERIAL_COMM_CHANNEL0
-	    #define SCI_PORT0               (UINT8) 0u
-	#endif
-	#ifdef SERIAL_COMM_CHANNEL1
-	    #define SCI_PORT1               (UINT8) 1u
-	#endif   
 
  #define PWM_DEBUG
 // #define PIT_PULSE_DEBUG
 
-/** Select Serial Communication channel. Select ONLY one */
-#define SERIAL_COMM_CHANNEL   SCI_PORT0 
-/** Baud Rate for KWP2000 Communications */
-#define COMM_BAUDRATE         SCI57600bps
 
 #define SCI_BUFFER_MODE
 

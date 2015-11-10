@@ -85,7 +85,7 @@ typedef struct
 *****************************************************************************************************/
 
 /* Global Dynamic Memory Allocation Configuration Macros  */
-#define    MEM_ALLOC_MAX_FAR_RAM_PAGES              0x03u
+#define    MEM_ALLOC_MAX_FAR_RAM_PAGES              0x02u
 /* Global Dynamic Memory Allocation Configuration Macros  */
 #define    MEM_ALLOC_MAX_NEAT_RAM_PAGES             0x01u
 

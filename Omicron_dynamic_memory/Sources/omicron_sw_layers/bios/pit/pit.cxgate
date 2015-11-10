@@ -57,7 +57,7 @@
 */
 	void vfnPIT1_Init(tCallbackFunction  Callback, UINT8 u8Core)
 	{
-	    /* Enables PIT channel 0 */
+	    /* Enables PIT channel 1 */
 	    PITCE_PCE1             = 1u;
 	    /* 16-bit timer 1 counts with micro time base 1 */
 	    PITMUX_PMUX1           = 1u;

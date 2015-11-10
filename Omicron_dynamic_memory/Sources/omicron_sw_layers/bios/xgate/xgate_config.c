@@ -64,6 +64,7 @@ void vfn_XGATE_CPU_init( void  )
     INT_CFADDR      = 0x70;         /* with vectors from 0xFF70 to 0xFF7E */
     INT_CFDATA1_PRIOLVL = 6;        /* XGATE software trigger 0, priority 6 */
     INT_CFDATA1_RQST = 1;           /* routed to XGATE */
+
     
     /* Enable XGATE mode and interrupts */
     XGMCTL= 0xFBC1;      

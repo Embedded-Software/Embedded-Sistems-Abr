@@ -51,15 +51,16 @@ extern tCallbackFunction vfnPIT0_Callback;
 *****************************************************************************************************/
 
 /** Periodic Interrupt Timer definitions */
-#define    PIT_MICROTIMER_PERIOD            1000000
+#define    PIT_MICROTIMER_PERIOD            24000000
 #define    PIT_TARGET_FREQ                  2000
 
 /** Periodic Interrupt Timer macros */
 #define    PIT_MICROTIMER_DIV               ( UINT8 ) ( ( gu32BusFrequency / PIT_MICROTIMER_PERIOD ) - 1 )
 #define    PIT_VALUE                        ( ( PIT_MICROTIMER_PERIOD / PIT_TARGET_FREQ ) - 1 )
 
-#define    PIT_MICROTIMER_PERIOD1           200000
-#define    PIT_TARGET_FREQ1                 100000
+#define    PIT_MICROTIMER_PERIOD1           24000000
+#define    PIT_TARGET_FREQ1                 10000
+/*UINT8 PIT_TARGET_FREQ1 = 1000;*/
 
 #define    PIT_MICROTIMER1_DIV              ( UINT8 ) ( ( gu32BusFrequency / PIT_MICROTIMER_PERIOD1 ) - 1 )
 #define    PIT_VALUE1                       ( ( PIT_MICROTIMER_PERIOD1 / PIT_TARGET_FREQ1 ) - 1 )

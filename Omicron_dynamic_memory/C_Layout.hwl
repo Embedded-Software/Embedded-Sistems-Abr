@@ -9,7 +9,7 @@ Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automat
 OPEN data 0 56 60 22
 Data:1 < attributes SCOPE global,COMPLEMENT None,FORMAT Symb,MODE periodical,SORT NotSort,UPDATERATE 2,NAMEWIDTH 32
 OPEN data 60 0 40 36
-Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Hex,MODE periodical,SORT NotSort,UPDATERATE 1,NAMEWIDTH 32
+Data:2 < attributes SCOPE local,COMPLEMENT None,FORMAT Hex,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 32
 OPEN command 60 78 40 22
 Command < attributes CACHESIZE 1000
 bckcolor 50331647

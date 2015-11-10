@@ -37,7 +37,6 @@ const tNearMemAlloc_config  NearMemAlloc_config[] =
 /* Dynamic memory allocation configuration for FAR memory */
 const tPagedRAMpages_config PagedRamPagesFar_config[] =
 {
-    {RAM_F8, (tu8ptr_far)0xF81000, (tu8ptr_far)0xF81FFF},
     {RAM_F2, (tu8ptr_far)0xF21000, (tu8ptr_far)0xF21FFF},
     {RAM_F3, (tu8ptr_far)0xF31000, (tu8ptr_far)0xF31FFF}
 };

@@ -30,6 +30,8 @@
 /** PIT definitions and prototypes */
 #include    "pit.h"
 
+#include    "GPIO.h"
+
 /*****************************************************************************************************
 * Declaration of module wide TYPES
 *****************************************************************************************************/
@@ -110,6 +112,8 @@ void vfnTask_Scheduler( void  );
 
 /** Time triggered tasks activation handler - */
 void vfnScheduler_Callback( void  );
+
+void vfnDutyCycle_Variator(void);
 
 
 #endif /* __SCHEDULER_H */ 
